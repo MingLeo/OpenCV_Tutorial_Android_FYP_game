@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">OpenCV_Tutorial</string>
+    <string name="msg">extract HSV Color Channel</string>
+</resources>

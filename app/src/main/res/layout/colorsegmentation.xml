@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.opencv_tutorial.ColorSplitRangeDetection">
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="9dp"
+        android:onClick="displayToast"
+        android:text="@string/msg" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="69dp"
+        android:layout_marginBottom="15dp"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="229dp"
+            android:layout_height="362dp"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:foregroundGravity="center"
+            android:src="@drawable/orange1min"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.578"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button2"
+            app:layout_constraintVertical_bias="0.0" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="354dp"
+        android:layout_height="62dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="37dp"
+        android:layout_marginBottom="146dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/hChannelText"
+            android:layout_width="82dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="101dp"
+            android:layout_marginTop="192dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="xGyro" />
+
+        <TextView
+            android:id="@+id/hChannelUpdate"
+            android:layout_width="91dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="221dp"
+            android:layout_marginTop="197dp"
+            android:text="xGyroUpdate" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="354dp"
+        android:layout_height="62dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="70dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/sChannelText"
+            android:layout_width="82dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="101dp"
+            android:layout_marginTop="192dp"
+            android:ems="10"
+            android:text="yGyro" />
+
+        <TextView
+            android:id="@+id/sChannelUpdate"
+            android:layout_width="91dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="221dp"
+            android:layout_marginTop="197dp"
+            android:text="yGyroUpdate" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="354dp"
+        android:layout_height="62dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="-4dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/vChannelText"
+            android:layout_width="82dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="101dp"
+            android:layout_marginTop="192dp"
+            android:ems="10"
+            android:text="vChannelText" />
+
+        <TextView
+            android:id="@+id/vChannelUpdate"
+            android:layout_width="91dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="221dp"
+            android:layout_marginTop="197dp"
+            android:text="zGyroUpdate" />
+    </LinearLayout>
+
+
+</RelativeLayout>
