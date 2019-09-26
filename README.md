@@ -4,9 +4,10 @@ Libraries used: OpenCv 3.1.0
 Gradele vers 3.5.0
 
 Game performed in follow steps:
+
 '''
    1st Phase: Yellow Object Detection
-        - RGBA Frmae
+        - RGBA Frame
         - perform Color Segmentation in HSV color scheme using InRange(), threshold to just Yellow color range.
         - Binary Threshold mask returned detecting only the Yellow color objects
         - Perform Morphological operations (dilation & erosion) on the mask to remove any holes on the mask.
