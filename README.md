@@ -1,4 +1,4 @@
-#FYP Interactive EXERGame w Yellow Object Detection using OpenCV
+# FYP Interactive EXERGame w Yellow Object Detection using OpenCV
 
 Libraries used: OpenCv 3.1.0
 Gradele vers 3.5.0
@@ -19,7 +19,7 @@ Game performed in follow steps:
         -  Compute the moments of the largest contour to find Position Centroid, 
         - plot the centroid as a point, indicated by a circle, to display back on the frame as visual aid for the user to see.
 '''
-'''
+
     2nd phase: Displaying bitmaps on the screen at random arbitrary positions for the game. User has to match position of object held in hand to the position where the bitmap appears and scores a point when the coordinates of their location matches.
        - Load a URL resource
        - Extract the Bitmap of the URL resource
@@ -28,7 +28,7 @@ Game performed in follow steps:
        -
        -
 '''
-'''
+
     3rd phase: Multiple Types of Game interaction!
        -
        -
