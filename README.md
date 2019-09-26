@@ -6,6 +6,7 @@ Gradele vers 3.5.0
 Game performed in follow steps:
 
 '''
+>
 *1st Phase: Yellow Object Detection
   * RGBA Frame
   * perform Color Segmentation in HSV color scheme using InRange(), threshold to just Yellow color range.
@@ -34,5 +35,5 @@ Game performed in follow steps:
   * 
   * 
   * 
-
+>
 '''
