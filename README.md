@@ -16,11 +16,12 @@ Game performed in follow steps:
         - detect contous on the mask using findContours() to identify number of yellow objects detected in the frame.
         - Loop thru the contours and extract out the largest Contour using ContourArea().
         -Track only the largest object detected in the frame, which will be the object that our user will be holding on to as they perform the Exercise.
-        
         -  Compute the moments of the largest contour to find Position Centroid, 
         - plot the centroid as a point, indicated by a circle, to display back on the frame as visual aid for the user to see.
 '''
 
+
+'''
     2nd phase: Displaying bitmaps on the screen at random arbitrary positions for the game. User has to match position of object held in hand to the position where the bitmap appears and scores a point when the coordinates of their location matches.
        - Load a URL resource
        - Extract the Bitmap of the URL resource
@@ -30,10 +31,11 @@ Game performed in follow steps:
        -
 '''
 
+
+'''
     3rd phase: Multiple Types of Game interaction!
        -
        -
        -
        -
-       
 '''
