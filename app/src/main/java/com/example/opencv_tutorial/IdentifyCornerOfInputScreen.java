@@ -33,12 +33,19 @@ import org.opencv.imgproc.Moments;
 import java.io.InputStreamReader;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.locks.Lock;
 
 
-public class hsv_color_3_yellow_sorted_clean_code extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2 {
+//plot circle/squares @ the 4 edges of the screen!
+
+public class IdentifyCornerOfInputScreen extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2 {
     //JavaCameraView javaCameraView;
     CameraBridgeViewBase cameraBridgeViewBase;
     BaseLoaderCallback baseLoaderCallback;
@@ -239,8 +246,8 @@ public class hsv_color_3_yellow_sorted_clean_code extends AppCompatActivity impl
 //        Imgproc.GaussianBlur(yellowMaskMorphed, mIntermediateMat, new Size(9, 9), 0, 0);   //better result than kernel size (3,3), maybe cos reference area wider, bigger, can decide better whether inrange / out of range.
 //        Imgproc.GaussianBlur(yellowMaskMorphed,mIntermediateMat,new Size(5,5),0,0);
         Imgproc.GaussianBlur(yellowMaskMorphed,mIntermediateMat,new Size(3,3),0,0);    //kernel size (3,3) better accuracy cos scrutinizing over a smaller patch of area to decide whether that patch is in/out of range, so threshold/allowance smaller.
-                                                                                                                  //i.e Acceptable Value range 61-120 vs 5-9.  Any value from 61-120 would qualify, that gives it 60 possibilities, whilst 5-9 only has 5 possibilities
-                                                                                                                  //Therefore, 5/9 nd a higher degree of detection to qualify as compare to 61/120. Hence we say that 5/9 has a lower threshold/allowance than 61/120.
+        //i.e Acceptable Value range 61-120 vs 5-9.  Any value from 61-120 would qualify, that gives it 60 possibilities, whilst 5-9 only has 5 possibilities
+        //Therefore, 5/9 nd a higher degree of detection to qualify as compare to 61/120. Hence we say that 5/9 has a lower threshold/allowance than 61/120.
 
         Imgproc.Canny(mIntermediateMat, mIntermediateMat, 5, 120);   //try adjust threshold   //https://stackoverflow.com/questions/25125670/best-value-for-threshold-in-canny
         //https://stackoverflow.com/questions/21324950/how-to-select-the-best-set-of-parameters-in-canny-edge-detection-algorithm-imple
@@ -301,9 +308,9 @@ public class hsv_color_3_yellow_sorted_clean_code extends AppCompatActivity impl
         Imgproc.cvtColor(InputFrame, InputFrame, Imgproc.COLOR_HSV2RGB);
 
 
-    //this part got error, cos no matter whether got yellow object in frame, will perform this calculation, so when frame no yellow color, error occurs cos no Contour detected, contour Size = 0,
-    //FATAL IndexOutOfBoundsException occurs!
-    //Therefore nd to bound this sect of code within try catch loop to handle error gracefully!
+        //this part got error, cos no matter whether got yellow object in frame, will perform this calculation, so when frame no yellow color, error occurs cos no Contour detected, contour Size = 0,
+        //FATAL IndexOutOfBoundsException occurs!
+        //Therefore nd to bound this sect of code within try catch loop to handle error gracefully!
 
         try {
             //   FATAL EXCEPTION IndexOutOfBoundsExeption: Index:0, Size:0;
@@ -322,11 +329,14 @@ public class hsv_color_3_yellow_sorted_clean_code extends AppCompatActivity impl
 
             Imgproc.circle(InputFrame, mc.get(0), 15, color, -1);   //just to plot the small central point as a dot on the detected ImgObject.
 
-//        //====================== If want to put Bounding Rect ard Largest Contour Object! ==================
-//            Rect r = Imgproc.boundingRect(contours.get(maxAreaContourIndex1));    // sOLN Saviour =D :  https://ratiler.wordpress.com/2014/09/08/detection-de-mouvement-avec-javacv/
-//            Imgproc.rectangle(InputFrame, r.br(), r.tl(), new Scalar(255, 0, 255), 2);    //returns r & b combination, line also thicker.
-//            Log.d("placing boundingRect on","Largest Contour Object");
-//        //===================================================================================================
+        //====================== If want to put Bounding Rect ard Largest Contour Object! ==================
+            Rect r = Imgproc.boundingRect(contours.get(maxAreaContourIndex1));    // sOLN Saviour =D :  https://ratiler.wordpress.com/2014/09/08/detection-de-mouvement-avec-javacv/
+            Imgproc.rectangle(InputFrame, r.br(), r.tl(), new Scalar(255, 0, 255), 2);    //returns r & b combination, line also thicker.
+            Log.d("placing boundingRect on","Largest Contour Object");
+            Log.d("",""+r.br());   //return new Point(x + width, y + height);
+            Log.d("",""+r.tl());   //return new Point(x, y);
+
+        //===================================================================================================
 
         } catch (IndexOutOfBoundsException e) {
             Log.d("INDEX OUT OF BOUNDS EXCEPTION", "DETECTED" + e);
@@ -338,9 +348,103 @@ public class hsv_color_3_yellow_sorted_clean_code extends AppCompatActivity impl
 //================ =D YASSS! ABOVE CODE Finally Fucking Working!  WORKED!  WORKED WORKED! :D :D :D  FUCKING FINALLY! ===================================
 
 
+//=============== Plot Rectangle / Circle @ fixed positions, corner of the screen! ==========================
+
+//        Scalar color = new Scalar(0,255,0);   //r,g,b, so only show green box
+
+        //https://stackoverflow.com/questions/40120433/draw-rectangle-in-opencv?rq=1 -- how to use Rect = new Rect()
+        //https://answers.opencv.org/question/122532/how-to-floodfill-an-image-with-java-api/ -- how to use floodfill using Rect.
+        //https://qiita.com/yeb8jo/items/2ab97dc69b375b501fba - floodfill implementation in Android
+        //@@--> THIS THE ONE :D -  https://github.com/zylo117/SpotSpotter/blob/master/src/pers/zylo117/spotspotter/patternrecognition/ROI_Irregular.java - floodfill implementation in Android
+
+
+
+//        ObjectCreatorThread.createObject(InputFrame);   //run as a thread, out put each rect Thread by Thread
+        Log.d("creating Thread Object","");
+        ObjectCreatorThread o1 = new ObjectCreatorThread(InputFrame);   //run as a thread, out put each rect Thread by Thread
+        Log.d("Thread Object","created");
+        new Thread(o1).start();   //run as a thread, out put each rect Thread by Thread
+        Log.d("Running Thread Object","");
+
+        Set<ObjectCreatorThread> mySet = Collections.newSetFromMap(new ConcurrentHashMap<ObjectCreatorThread, Boolean>());
+//        HashSet<ObjectCreatorThread> set = Collections.newSetFromMap( new ConcurrentHashMap<ObjectCreatorThread,o1>() );
+        synchronized(o1) {
+//            Lock myLock= new Lock();   //Lock() is an abstract method, cannot be implemented, cos Lock is an interface class, empty constructor, no implementation for that method yet.
+//            myLock.lock();
+            mySet.add(o1);
+        }
+        synchronized(mySet) {
+            for (Iterator<ObjectCreatorThread> i = mySet.iterator(); i.hasNext();) {
+                ObjectCreatorThread obj= i.next();
+//                if (!obj.isSmt()) {
+                if (!obj.equals(o1)) {
+                    i.remove();
+                }
+            }
+        }
+
+//   ////=====================  =D WORKED! DREW 4 RECTANGLES ON THE 4 CORNERS OF THE SCREEN! ==============================
+//
+//
+//        Rect r1 = new Rect(0,0,300,300);
+//        Rect r2 = new Rect(772,0,300,300);
+//        Rect r3 = new Rect(0,772,300,300);
+//        Rect r4 = new Rect(772,772,300,300);
+//
+//        ArrayList<Rect> rect_array = new ArrayList<Rect>();
+//        rect_array.add(r1);
+//        rect_array.add(r2);
+//        rect_array.add(r3);
+//        rect_array.add(r4);
+//
+//
+////        final Mat maskCopyTo = Mat.zeros(InputFrame.size(), CvType.CV_8UC1); /// 创建copyTo方法的mask，大小与原图保持一致
+//        final Mat maskFloodFill = Mat.zeros(new Size(InputFrame.cols() + 2, InputFrame.rows() + 2), CvType.CV_8UC1);    //as required in documentation https://docs.opencv.org/2.4/modules/imgproc/dType.8UC1);
+//
+//
+//        if (rect_array.size() > 0) {   //if got more than 1 rect found in rect_array, draw them out!
+//
+//            Iterator<Rect> it2 = rect_array.iterator();
+//            while (it2.hasNext()) {
+//                Rect obj = it2.next();
+//
+//
+//                Imgproc.rectangle(InputFrame, obj.br(), obj.tl(), new Scalar(0, 255, 0), 4);
+//
+//                Imgproc.floodFill(InputFrame, maskFloodFill,new Point((obj.tl().x +obj.br().x) / 2, (obj.tl().y + obj.br().y) / 2), new Scalar(0,255,0), new Rect() , new Scalar(120,120,120),new Scalar(120,120,120),4);
+//
+//            }
+//        }
+//
+//
+//   ////============================================================================================
+
+
+//   ////===================== 1ST SUCCESSFUL RECTANGLE DRAWN ON SCREEN! =D ==============================
+//        final Mat maskFloodFill = Mat.zeros(new Size(InputFrame.cols() + 2, InputFrame.rows() + 2), CvType.CV_8UC1);    //as required in documentation https://docs.opencv.org/2.4/modules/imgproc/doc/miscellaneous_transformations.html?highlight=floodfill
+//        Rect r1 = new Rect(0,0,300,300);
+//        Imgproc.rectangle(InputFrame,r1.tl(),r1.br(),new Scalar(0,255,0),4);
+//
+////        Imgproc.floodFill(InputFrame, maskFloodFill,new Point((r1.tl().x + r1.br().x) / 2, (r1.tl().y + r1.br().y) / 2), new Scalar(0,255,0), new Rect(), new Scalar(0,0,0),new Scalar(0,0,0),4);
+//        Imgproc.floodFill(InputFrame, maskFloodFill,new Point((r1.tl().x + r1.br().x) / 2, (r1.tl().y + r1.br().y) / 2), new Scalar(0,255,0), null, new Scalar(20,20,20),new Scalar(20,20,20),4);   //YASS!! IT FKEN FINALLY WORKED!  =D   https://github.com/zylo117/SpotSpotter/blob/master/src/pers/zylo117/spotspotter/patternrecognition/ROI_Irregular.java  THANK YOU FKEN GOD! THANKS!  =D SAVIOUR!
+//   ////============================================================================================
+//        Imgproc.rectangle(InputFrame, new Point(0.0,0.0) ,new Point(300.0,300.0), new Scalar(0,255,0),4);    //top left corner
+//        Imgproc.rectangle(InputFrame, new Point(772.0,0.0) ,new Point(1072.0,300.0), new Scalar(0,255,0),4);    //top right corner
+//        Imgproc.rectangle(InputFrame, new Point(0.0,772.0) ,new Point(300.0,1072.0), new Scalar(0,255,0),4);    //bottom left corner
+//        Imgproc.rectangle(InputFrame, new Point(772.0,772.0) ,new Point(1072.0,1072.0), new Scalar(0,255,0),4);    //bottom right corner
+
+
+                
+//Imgproc.floodFill();   //got such method =D
+//Core.floodfill  //no such method
+
+//==============================================================================================================
+
+
 
 //        return mIntermediateMat;   //returns the canny edge of the yellowMaskMorphed
         return InputFrame;  //Works =D =D =D !  YASSSS!!            //Mat Type output.   So OnCameraFrame we only work on Mat!
+//        return maskCopyTo;  //Works =D =D =D !  YASSSS!!            //Mat Type output.   So OnCameraFrame we only work on Mat!
 //        return yellowMaskMorphed;  //test this. yup ok Working =D
 //        return maskForYellow;  //test this. yup ok Working =D
 
@@ -361,6 +465,14 @@ public class hsv_color_3_yellow_sorted_clean_code extends AppCompatActivity impl
 
     }
 
+
+//    class myLock implements Lock{
+//
+//        @Override
+//        public void lock() {
+//
+//        }
+//    }
 
 }
 

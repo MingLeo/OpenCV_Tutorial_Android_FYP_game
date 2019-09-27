@@ -370,7 +370,7 @@ public class JavaCameraView extends CameraBridgeViewBase implements PreviewCallb
         private int mHeight;
     };
 
-    private class CameraWorker implements Runnable {
+    private class CameraWorker implements Runnable {     //runs each frame as a unique indiv independent thread.
 
         @Override
         public void run() {
