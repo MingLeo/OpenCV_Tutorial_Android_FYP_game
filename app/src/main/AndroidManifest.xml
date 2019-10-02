@@ -18,7 +18,7 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
     <!--  android:theme="@style/AppTheme"  -->
 
-        <activity android:name=".IdentifyCornerOfInputScreen"
+        <activity android:name=".IdentifyCornerOfInputScreen_Flags"
             android:screenOrientation="portrait"
             android:configChanges="keyboardHidden|orientation"
             >
