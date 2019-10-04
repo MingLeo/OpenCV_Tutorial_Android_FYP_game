@@ -731,8 +731,8 @@ public class IdentifyCornerOfInputScreen_diffIntervals_CountDownLives extends Ap
     }
 
 
-        public void computeScore(){
-            score += 10;
+        public void computeScore(){   //calculates & tracks the total number of objects matched successfully thus far.
+            score += 1;
             scoreText.setText(String.valueOf(score));
         }
 
