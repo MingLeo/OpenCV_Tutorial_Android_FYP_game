@@ -63,7 +63,7 @@ import static android.hardware.Camera.Parameters.PREVIEW_FPS_MIN_INDEX;
 
 //plot circle/squares @ the 4 edges of the screen!
 
-public class IdentifyCornerOfInputScreen_handleZeroLogic extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2 {
+public class IdentifyCornerOfInputScreen_CountDownLives_handleZeroLogic extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2 {
     //JavaCameraView javaCameraView;
     //    CameraBridgeViewBase cameraBridgeViewBase;
     customSurfaceView cameraBridgeViewBase;    //cameraBridgeViewBase change to instance of customSurfaceView class to access both Camera mCamera object + CBase class!
@@ -355,14 +355,16 @@ public class IdentifyCornerOfInputScreen_handleZeroLogic extends AppCompatActivi
         super.onPause();
         Log.v("","onPause() called");
 //        Toast.makeText(getApplicationContext(), "You have ran out of Lives. Please try again! :D", Toast.LENGTH_LONG).show();    //display msg dailog box back to user.
+
         //objects stop moving, imply mainThread stop? / frames Stop? BUT  Lives still counting down! Implying that CountDownRunner still alive.
         //Lives=0; //permanently assign to this to prevent it from continuing to count down
         Timer1.cancel();//What i nd is to stop the CountDownTimer.  //Yuppadeedeedoodledoo. Yup This is it!  =D
         Log.v("","Timer Cancelled");
 
+//        //Not working Leh :(
 
-        Log.d("Bef executing AlertDialog","");
-        new AlertDialog.Builder(getApplication())
+        Log.v("Bef executing AlertDialog","");
+        new AlertDialog.Builder(this)
                 .setTitle("Game Ended")
                 .setMessage("You have ran out of Lives. Please try again! :D")
 
@@ -370,16 +372,32 @@ public class IdentifyCornerOfInputScreen_handleZeroLogic extends AppCompatActivi
                 // The dialog is automatically dismissed when a dialog button is clicked.
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        // restart()  Activity operation
+                        // restart() the entire Fking Activity (aka Application)!
+                        recreate();   //  YASSS, IT FUCKING/fUgging WORKED!  =D
 
                     }
-                });
+                }).show();
         Log.d("Executed Dialog Box","");
 
         if (cameraBridgeViewBase != null) {
             cameraBridgeViewBase.disableView();   //This method is provided for clients, so they can disable camera connection and stop the delivery of framthe surface view itself is not destroyed and still stays on the screen
         }
     }
+
+    @Override
+    public void recreate()
+    {
+        if (android.os.Build.VERSION.SDK_INT >= 11)
+        {
+            super.recreate();
+        }
+        else   // FOR OS vers SDK_INT < 11  Bef 11)
+        {
+            startActivity(getIntent());
+            finish();
+        }
+    }
+
 
     @Override
     protected void onDestroy() {
