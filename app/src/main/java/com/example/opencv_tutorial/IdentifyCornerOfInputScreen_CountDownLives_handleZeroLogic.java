@@ -1,6 +1,8 @@
 package com.example.opencv_tutorial;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.os.Bundle;
@@ -298,25 +300,25 @@ public class IdentifyCornerOfInputScreen_handleZeroLogic extends AppCompatActivi
         } else {
             //show display text to user say try again, then show a button where they can restart the game
 //            onStop();
-            onPause();
+            onPause();  //Yup this is the effect I want to achieve, to halt the main thread(), to achieve mainUI freeze effect =D.
         }
 
 
     }    //enclosing bracket for OnCreate() method.
 
 
-    @Override
-    protected void onStop() {
-        super.onStop();  // Always call the superclass method first
-        Toast.makeText(getApplicationContext(), "You have ran out of Lives. Please try again! :D", Toast.LENGTH_LONG).show();    //display msg dailog box back to user.
-//        finish();
-
-        //thow the button here.
-        //button = R.id.______
-        //when button.OnClick()
-        //recreate()/ / startActivity.getIntent();
-
-    }
+//    @Override
+//    protected void onStop() {
+//        super.onStop();  // Always call the superclass method first
+//        Toast.makeText(getApplicationContext(), "You have ran out of Lives. Please try again! :D", Toast.LENGTH_LONG).show();    //display msg dailog box back to user.
+////        finish();
+//
+//        //thow the button here.
+//        //button = R.id.______
+//        //when button.OnClick()
+//        //recreate()/ / startActivity.getIntent();
+//
+//    }
 
 
     @Override
@@ -351,11 +353,28 @@ public class IdentifyCornerOfInputScreen_handleZeroLogic extends AppCompatActivi
     @Override
     protected void onPause() {
         super.onPause();
-        Toast.makeText(getApplicationContext(), "You have ran out of Lives. Please try again! :D", Toast.LENGTH_LONG).show();    //display msg dailog box back to user.
+        Log.v("","onPause() called");
+//        Toast.makeText(getApplicationContext(), "You have ran out of Lives. Please try again! :D", Toast.LENGTH_LONG).show();    //display msg dailog box back to user.
         //objects stop moving, imply mainThread stop? / frames Stop? BUT  Lives still counting down! Implying that CountDownRunner still alive.
         //Lives=0; //permanently assign to this to prevent it from continuing to count down
         Timer1.cancel();//What i nd is to stop the CountDownTimer.  //Yuppadeedeedoodledoo. Yup This is it!  =D
-        
+        Log.v("","Timer Cancelled");
+
+
+        Log.d("Bef executing AlertDialog","");
+        new AlertDialog.Builder(getApplication())
+                .setTitle("Game Ended")
+                .setMessage("You have ran out of Lives. Please try again! :D")
+
+                // Specifying a listener allows you to take an action before dismissing the dialog.
+                // The dialog is automatically dismissed when a dialog button is clicked.
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // restart()  Activity operation
+
+                    }
+                });
+        Log.d("Executed Dialog Box","");
 
         if (cameraBridgeViewBase != null) {
             cameraBridgeViewBase.disableView();   //This method is provided for clients, so they can disable camera connection and stop the delivery of framthe surface view itself is not destroyed and still stays on the screen
