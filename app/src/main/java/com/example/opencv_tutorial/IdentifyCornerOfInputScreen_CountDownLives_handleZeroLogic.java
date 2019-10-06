@@ -92,7 +92,7 @@ public class IdentifyCornerOfInputScreen_CountDownLives_handleZeroLogic extends 
     Point r3centroid = new Point(0,0);
     Point r4centroid = new Point(0,0);
 
-    double distance = 0.0;   //var for the euclidean distance computation
+    double distance1 = 0.0;   //var for the euclidean distance computation
 
     //    long startTime1, timeInterval1;
     //    long startTime2, timeInterval2;
@@ -738,8 +738,8 @@ public class IdentifyCornerOfInputScreen_CountDownLives_handleZeroLogic extends 
         // https://stackoverflow.com/questions/8732987/how-to-make-timer-task-to-wait-till-runonuithread-completed - TRY THIS CountDownLatch Implementation!
         // https://developer.android.com/reference/java/util/concurrent/CountDownLatch
         if (flag1 == true){
-            computeEuclideanDistance(r1centroid,p1);
-            if (distance < 65){
+            distance1 = computeEuclideanDistance(r1centroid,p1);
+            if (distance1 < 65){
                 Log.d("scored","topLeft");
                 computeScore();
                 flag1=false;   //remove object from screen, stop displaying, cos scored alrdy
@@ -762,11 +762,9 @@ public class IdentifyCornerOfInputScreen_CountDownLives_handleZeroLogic extends 
 
 
 
-
-
         if (flag2 == true){
-            computeEuclideanDistance(r2centroid,p1);
-            if (distance < 65){
+            distance1 = computeEuclideanDistance(r2centroid,p1);
+            if (distance1 < 65){
 //                Log.d("Ahh..","topRight & Object matched");
                 Log.d("scored","topRight");
                 computeScore();
@@ -776,8 +774,8 @@ public class IdentifyCornerOfInputScreen_CountDownLives_handleZeroLogic extends 
         }
 
         if (flag3 == true){
-            computeEuclideanDistance(r3centroid,p1);
-            if (distance < 65){   //threshold to qualify as a match!
+            distance1 = computeEuclideanDistance(r3centroid,p1);
+            if (distance1 < 65){   //threshold to qualify as a match!
                 Log.d("scored","bottomLeft");
                 computeScore();
                 flag3=false;
@@ -786,8 +784,8 @@ public class IdentifyCornerOfInputScreen_CountDownLives_handleZeroLogic extends 
         }
 
         if (flag4 == true){
-            computeEuclideanDistance(r4centroid,p1);
-            if (distance < 65){   //threshold value in order to qualify as a positive match!
+            distance1 = computeEuclideanDistance(r4centroid,p1);
+            if (distance1 < 65){   //threshold value in order to qualify as a positive match!
                 Log.d("scored","bottomRight");
                 computeScore();
                 flag4=false;
@@ -798,8 +796,9 @@ public class IdentifyCornerOfInputScreen_CountDownLives_handleZeroLogic extends 
     }
 
 
-    public void computeEuclideanDistance(Point a, Point b){
-        //        double distance = 0.0;
+    public double computeEuclideanDistance(Point a, Point b){
+        double distance = 0.0;   //internal method var, only exists within the lifecycle of this var.
+
         try{
             if(a != null && b != null){
                 double xDiff = a.x - b.x;
@@ -810,7 +809,7 @@ public class IdentifyCornerOfInputScreen_CountDownLives_handleZeroLogic extends 
             System.err.println("Something went wrong in euclideanDistance function in "+e.getMessage());
             //            System.err.println("Something went wrong in euclideanDistance function in "+ Utility.class+" "+e.getMessage());
         }
-        //        return distance;
+        return distance;
     }
 
 
