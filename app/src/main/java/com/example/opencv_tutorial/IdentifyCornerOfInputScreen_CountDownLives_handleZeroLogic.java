@@ -85,7 +85,7 @@ public class IdentifyCornerOfInputScreen_CountDownLives_handleZeroLogic extends 
     boolean clear4 = false;
 
 
-    Point p1 = new Point(0,0);    //centroid of object detected
+    Point p1 = new Point(0,0);    //initialize a point, this to be updated to value of centroid of our Hand object using the LargestBlobDetection() method below!
 
     Point r1centroid = new Point(0,0);    //centroid of position of each object displayed on the screen
     Point r2centroid = new Point(0,0);
@@ -182,7 +182,7 @@ public class IdentifyCornerOfInputScreen_CountDownLives_handleZeroLogic extends 
                         if (clear4 == true){
                             Lives -=1;
                             LivesText.setText(String.valueOf(Lives));   //NOT WORKING, EVERYTHING IN ONCREATE only creates the first time, but aft that does not
-                            if (Lives ==0){
+                            if (Lives <=0){
 //                                onStop();
                                 onPause();
                             }
@@ -212,7 +212,7 @@ public class IdentifyCornerOfInputScreen_CountDownLives_handleZeroLogic extends 
                             //                        if (timeInterval1>3800 && flag1 == true){
                             Lives -=1;
                             LivesText.setText(String.valueOf(Lives));   //NOT WORKING, EVERYTHING IN ONCREATE only creates the first time, but aft that does
-                            if (Lives ==0){
+                            if (Lives <=0){
 //                                onStop();
                                 onPause();
                             }
@@ -234,7 +234,7 @@ public class IdentifyCornerOfInputScreen_CountDownLives_handleZeroLogic extends 
                         if (clear2 == true){
                             Lives -=1;
                             LivesText.setText(String.valueOf(Lives));   //NOT WORKING, EVERYTHING IN ONCREATE only creates the first time, but aft that does not
-                            if (Lives ==0){
+                            if (Lives <=0){
 //                                onStop();
                                 onPause();
                             }
@@ -255,7 +255,7 @@ public class IdentifyCornerOfInputScreen_CountDownLives_handleZeroLogic extends 
                         if (clear3 == true){
                             Lives -=1;
                             LivesText.setText(String.valueOf(Lives));   //NOT WORKING, EVERYTHING IN ONCREATE only creates the first time, but aft that does not
-                            if (Lives ==0){
+                            if (Lives <=0){
 //                                onStop();
                                 onPause();
                             }
