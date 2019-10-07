@@ -63,7 +63,7 @@ import static android.hardware.Camera.Parameters.PREVIEW_FPS_MIN_INDEX;
 
 //plot circle/squares @ the 4 edges of the screen!
 
-public class IdentifyCornerOfInputScreen_CountDownLives_handleZeroLogic extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2 {
+public class IdentifyCornerOfInputScreen_CountDownLives_handleZeroLogic_4Flags extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2 {
     //JavaCameraView javaCameraView;
     //    CameraBridgeViewBase cameraBridgeViewBase;
     customSurfaceView cameraBridgeViewBase;    //cameraBridgeViewBase change to instance of customSurfaceView class to access both Camera mCamera object + CBase class!
@@ -100,7 +100,7 @@ public class IdentifyCornerOfInputScreen_CountDownLives_handleZeroLogic extends 
     //    long startTime4, timeInterval4;
 
     TextView LivesText;
-    int Lives = 3;  //initialize 3 Lives @ start of game
+    int Lives = 10;  //initialize 3 Lives @ start of game
     //maybe if want more complex, after each 4 rounds, if (Lives<3) {Lives+=1}
     TextView scoreText;
     int score;
@@ -172,13 +172,13 @@ public class IdentifyCornerOfInputScreen_CountDownLives_handleZeroLogic extends 
 
                     Log.d("seconds remaining: ","" + secsLeft);  // =D works, only prints out @ every 4 secs interval !
 
-                    //                for (int i=0; i<secsLeft; i++){
-                    //                    int mynumber = new Random().nextInt(100);
-                    //                    e3.setText(String.valueOf(mynumber));
-                    //                }
+//                for (int i=0; i<secsLeft; i++){
+//                    int mynumber = new Random().nextInt(100);
+//                    e3.setText(String.valueOf(mynumber));
+//                }
 
 
-                    if (secsLeft == 16 || secsLeft==15){    //if this works, the next step is to test on OnCameraFrame
+                    if (secsLeft == 15){    //if this works, the next step is to test on OnCameraFrame
                         if (clear4 == true){
                             Lives -=1;
                             LivesText.setText(String.valueOf(Lives));   //NOT WORKING, EVERYTHING IN ONCREATE only creates the first time, but aft that does not

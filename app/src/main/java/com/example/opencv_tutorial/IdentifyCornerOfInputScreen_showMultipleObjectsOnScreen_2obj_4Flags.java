@@ -64,7 +64,7 @@ import static android.hardware.Camera.Parameters.PREVIEW_FPS_MIN_INDEX;
 
 //plot circle/squares @ the 4 edges of the screen!
 
-public class IdentifyCornerOfInputScreen_showMultipleObjectsOnScreen extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2 {
+public class IdentifyCornerOfInputScreen_showMultipleObjectsOnScreen_4Flags extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2 {
     //JavaCameraView javaCameraView;
     //    CameraBridgeViewBase cameraBridgeViewBase;
     customSurfaceView cameraBridgeViewBase;    //cameraBridgeViewBase change to instance of customSurfaceView class to access both Camera mCamera object + CBase class!
@@ -75,10 +75,10 @@ public class IdentifyCornerOfInputScreen_showMultipleObjectsOnScreen extends App
     //    Timer t1 = new Timer();
 
     long secsLeft;
-    boolean flag1 = false;  //the "switch" responsible for activation of certain section of code to run.
-    boolean flag2 = false;  // + whether or not object to be displayed
-    boolean flag3 = false;
-    boolean flag4 = false;
+    boolean flag1 = false;  //flag1 - object 1 & 4   //the "switch" responsible for activation of certain section of code to run.
+    boolean flag2 = false;  //flag2 - object 2 & 4   // + whether or not object to be displayed
+    boolean flag3 = false;  //flag3 - object 3 & 1
+    boolean flag4 = false;  //flag3 - object 3 & 4
 
     boolean clear1 = false;  //flag to keep track of lives + also double as a sorta tag to each indiv object?
     boolean clear2 = false;
@@ -108,16 +108,20 @@ public class IdentifyCornerOfInputScreen_showMultipleObjectsOnScreen extends App
     //    long startTime4, timeInterval4;
 
     TextView LivesText;
-    int Lives = 10;  //initialize 3 Lives @ start of game
+    int Lives = 20;  //initialize 3 Lives @ start of game
     //maybe if want more complex, after each 4 rounds, if (Lives<3) {Lives+=1}
     TextView scoreText;
     int score;
 
-    CountDownTimer Timer1;   //initialize a global instance of a CountDownTimer.
+    CountDownTimer Timer1;   //ND to initialize as a global instance of a CountDownTimer in order to call Timer in onPause() method!
+                             //if declare as final, means cannot touch/access/make changes to the timer alrdy!
+                             //Cos for our code, we will keep looping and looping so we won't call cancel() in OnFinish() of Timer.
+                             //We call cancel() INSIDE the onPause() method of the  /@*APPLICATION LIFECYCLE!*@/
 
-    boolean TimerFlag1;   //flag set for CountDownTimer 1  @any 1 point in time, only 1 Timer will be run, Each Timer run @ diff Intervals, nd test!
-    boolean TimerFlag2;   //flag set for CountDownTimer 2
-    boolean TimerFlag3;   //flag set for CountDownTimer 3
+
+//    boolean TimerFlag1;   //flag set for CountDownTimer 1  @any 1 point in time, only 1 Timer will be run, Each Timer run @ diff Intervals, nd test!
+//    boolean TimerFlag2;   //flag set for CountDownTimer 2
+//    boolean TimerFlag3;   //flag set for CountDownTimer 3
 
     int globalLoopCounter=0;
 
@@ -177,7 +181,8 @@ public class IdentifyCornerOfInputScreen_showMultipleObjectsOnScreen extends App
 
         //Test diff CountDown Intervals + the detected interval number to CATCH!
 //        Timer1 = new CountDownTimer(8000, 2000) {
-        Timer1 = new CountDownTimer(16000, 4000) {
+//        final CountDownTimer Timer1 = new CountDownTimer(8000, 2000) {
+        Timer1 = new CountDownTimer(8000, 2000) {
 
             public void onTick(long millisUntilFinished) {
 
@@ -185,13 +190,12 @@ public class IdentifyCornerOfInputScreen_showMultipleObjectsOnScreen extends App
 
                 Log.d("seconds remaining: ","" + secsLeft);  // =D works, only prints out @ every 4 secs interval !
 
-                //                for (int i=0; i<secsLeft; i++){
-                //                    int mynumber = new Random().nextInt(100);
-                //                    e3.setText(String.valueOf(mynumber));
-                //                }
+//                for (int i=0; i<secsLeft; i++){
+//                    int mynumber = new Random().nextInt(100);
+//                    e3.setText(String.valueOf(mynumber));
+//                }
 
-//                if (secsLeft == 7){    //flag1==true   //object 1 & 4
-                if (secsLeft == 16 || secsLeft==15){    //flag1==true   //object 1 & 4
+                if (secsLeft == 7){    //flag1==true   //object 1 & 4
                     if (clear3 == true){
                         Lives -=1;
                     }
@@ -208,7 +212,7 @@ public class IdentifyCornerOfInputScreen_showMultipleObjectsOnScreen extends App
 
                     //EACH TIME, SET ALL FLAGS TO FALSE FIRST. Bef setting 1 to true via the Rand_Generator Switch_case below:
 
-                    flag1=true;  clear1=true; //Specifying rect coords directly here won't work, cos OnCameraFrame() method not even ready yet, so InputFrame won't be avail at this moment in time!
+                    flag1=true;  clear1=true;   //flag1 - object 1 & 4   //Specifying rect coords directly here won't work, cos OnCameraFrame() method not even ready yet, so InputFrame won't be avail at this moment in time!
                     flag2=false; clear2=false;
                     flag3=false; clear3=false;
                     flag4=false; clear4=true;
@@ -248,8 +252,8 @@ public class IdentifyCornerOfInputScreen_showMultipleObjectsOnScreen extends App
                     Log.d("bool ","flag4 "+ flag4); Log.d("bool ","clear4 "+ clear4);
                 }
 
-//                if (secsLeft == 5){    //flag2==true   //object 2 & 4
-                if (secsLeft == 11){    //flag2==true   //object 2 & 4
+
+                if (secsLeft == 5){    //flag2==true   //object 2 & 4
                     if (clear1 == true){
                         Lives -=1;
                     }
@@ -264,7 +268,7 @@ public class IdentifyCornerOfInputScreen_showMultipleObjectsOnScreen extends App
                     }
                     Log.d("flag 2","HOHO");   //:o finally showing :)
                     flag1=false; clear1=false;
-                    flag2=true; clear2=true;
+                    flag2=true; clear2=true;     //flag2 - object 2 & 4
                     flag3=false; clear3=false;
                     flag4=false; clear4=true;
 
@@ -274,8 +278,8 @@ public class IdentifyCornerOfInputScreen_showMultipleObjectsOnScreen extends App
                     Log.d("bool ","flag4 "+ flag4); Log.d("bool ","clear4 "+ clear4);
                 }
 
-//                if (secsLeft == 3){    //flag3==true   //object 3 & 1
-                if (secsLeft == 7){    //flag3==true   //object 3 & 1
+
+                if (secsLeft == 3){    //flag3==true   //object 3 & 1
                     if (clear2 == true){
                         Lives -=1;
                     }
@@ -292,7 +296,7 @@ public class IdentifyCornerOfInputScreen_showMultipleObjectsOnScreen extends App
                     Log.d("flag 4","heehee");   //:o finally showing :)
                     flag1=false; clear1=true;
                     flag2=false; clear2=false;
-                    flag3=true; clear3=true;
+                    flag3=true; clear3=true;   //flag3 - object 3 & 1
                     flag4=false; clear4=false;
 
                     Log.d("bool ","flag1 "+ flag1); Log.d("bool ","clear1 "+ clear1);
@@ -301,8 +305,8 @@ public class IdentifyCornerOfInputScreen_showMultipleObjectsOnScreen extends App
                     Log.d("bool ","flag4 "+ flag4); Log.d("bool ","clear4 "+ clear4);
                 }
 
-//                if (secsLeft == 1){    //flag4==true   //object 3 & 4
-                if (secsLeft == 3){    //flag4==true   //object 3 & 4
+
+                if (secsLeft == 1){    //flag4==true   //object 3 & 4
                     if (clear1 == true){
                         Lives -=1;
                     }
@@ -320,13 +324,14 @@ public class IdentifyCornerOfInputScreen_showMultipleObjectsOnScreen extends App
                     flag1=false; clear1=false;
                     flag2=false; clear2=false;
                     flag3=false; clear3=true;
-                    flag4=true; clear4=true;
+                    flag4=true; clear4=true;    //flag4   //object 3 & 4
 
                     Log.d("bool ","flag1 "+ flag1); Log.d("bool ","clear1 "+ clear1);
                     Log.d("bool ","flag2 "+ flag2); Log.d("bool ","clear2 "+ clear2);
                     Log.d("bool ","flag3 "+ flag3); Log.d("bool ","clear3 "+ clear3);
                     Log.d("bool ","flag4 "+ flag4); Log.d("bool ","clear4 "+ clear4);
                 }
+
 
 
                 //   =D =D =D FLAG FUCKING WORKS  :)   Now to test it in conjunction w a simple onCameraFrame().
@@ -336,6 +341,7 @@ public class IdentifyCornerOfInputScreen_showMultipleObjectsOnScreen extends App
 
                 ////            editText.setText(mynumber);    //android.content.res.Resources$NotFoundException: String resource ID #0x12
                 //            editText.setText(String.valueOf(mynumber));    // :D =D WORKS!
+
             }
 
             public void onFinish() {
@@ -578,7 +584,7 @@ public class IdentifyCornerOfInputScreen_showMultipleObjectsOnScreen extends App
 
             p1.x = (mu.get(0).m10 / (mu.get(0).m00 + 1e-5));    //add 1e-5 to avoid division by zero
             p1.y = (mu.get(0).m01 / (mu.get(0).m00 + 1e-5));    //Point1 updated here to Centroid of LargestBlob detected on our Hand!
-                                                                //Extract out p1, so that we can use it to do computation for the computeEuclideanDistance() method!
+            //Extract out p1, so that we can use it to do computation for the computeEuclideanDistance() method!
 
             //add 1e-5 to avoid division by zero
             //            mc.add(new Point(mu.get(0).m10 / (mu.get(0).m00 + 1e-5), mu.get(0).m01 / (mu.get(0).m00 + 1e-5)));   //index 0 cos there shld only be 1 contouest one only!
@@ -615,7 +621,7 @@ public class IdentifyCornerOfInputScreen_showMultipleObjectsOnScreen extends App
 
 
 
-//    public void plotObjectBox1atAtimeOnUI(){
+    //    public void plotObjectBox1atAtimeOnUI(){
 //    public void plotMultipleObjectOnUI(){
     public void plotObjectsOnUI(){
 
@@ -780,18 +786,18 @@ public class IdentifyCornerOfInputScreen_showMultipleObjectsOnScreen extends App
 
     public void matchObject(){
 
-           if (flag1 == true) {   //object 1 & 4
+        if (flag1 == true) {   //object 1 & 4
 
-               distance1 = computeEuclideanDistance(r1centroid, p1);
+            distance1 = computeEuclideanDistance(r1centroid, p1);
 //               if (distance1 < 65) {
-               if (distance1 < 120) {   //increase dist detection threshold to +/- radius 120, cos when user stand at a far dist away from screen, object becomes vry small, vry hard to hit the rect centroid, so threshold acceptance must increase!
-                                        //=D YUP, MUCH BETTER!  :D
-                   if (clear1 == true) {   //this helps us ensure that computeScore does not execute REPEATEDLY, cos EVEN THOUGH clear flag is down, but the fact that flag still remain true if either clear flag is still on, it will still silently execute that object in the background even though it does not show it, so nd another level of check! That's why earloer w/o this check, code keeps computing the score in the object's box in the background.
-                       Log.d("scored", "topLeft");
-                       computeScore();
+            if (distance1 < 120) {   //increase dist detection threshold to +/- radius 120, cos when user stand at a far dist away from screen, object becomes vry small, vry hard to hit the rect centroid, so threshold acceptance must increase!
+                //=D YUP, MUCH BETTER!  :D
+                if (clear1 == true) {   //this helps us ensure that computeScore does not execute REPEATEDLY, cos EVEN THOUGH clear flag is down, but the fact that flag still remain true if either clear flag is still on, it will still silently execute that object in the background even though it does not show it, so nd another level of check! That's why earloer w/o this check, code keeps computing the score in the object's box in the background.
+                    Log.d("scored", "topLeft");
+                    computeScore();
 //                    flag1=false;   //remove object from screen, stop displaying, cos scored alrdy
-                       clear1 = false;  //switch rect object off, stop displaying the rect on UI + don't deduct live cos scored in time.   //this updates the flag in the countDownTimer =D.
-                   }
+                    clear1 = false;  //switch rect object off, stop displaying the rect on UI + don't deduct live cos scored in time.   //this updates the flag in the countDownTimer =D.
+                }
 //                   else {  //if (clear1==false) alrdy, we dun do anymore computation.
 //                       //break;   //Error: break outside switch or loop
 //                       //since else if-else loop just executes one, no nd to break out loop once it finish execution.
@@ -799,18 +805,18 @@ public class IdentifyCornerOfInputScreen_showMultipleObjectsOnScreen extends App
 //                   }
 //
 //                   //actl if that's the case, dun even nd the else loop
-               }
+            }
 
-               distance2 = computeEuclideanDistance(r4centroid, p1);   //p1 is the centroid value of our Hand held object, the largest blob, is computed frame by frame Real time.
+            distance2 = computeEuclideanDistance(r4centroid, p1);   //p1 is the centroid value of our Hand held object, the largest blob, is computed frame by frame Real time.
 //               if (distance2 < 65) {
-               if (distance2 < 120) {
-                   if (clear4 == true) {
-                       Log.d("scored", "topLeft");
-                       computeScore();
+            if (distance2 < 120) {
+                if (clear4 == true) {
+                    Log.d("scored", "topLeft");
+                    computeScore();
 //                   flag1=false;   //remove object from screen, stop displaying, cos scored alrdy
-                       clear4 = false;  //Flag serves/affects 2 purpose:  Lives + Rect object display.    //this updates the flag in the countDownTimer =D.
-                   }
-               }
+                    clear4 = false;  //Flag serves/affects 2 purpose:  Lives + Rect object display.    //this updates the flag in the countDownTimer =D.
+                }
+            }
 //               else {
 //                   //want it to reamain as status quo & do nothing, so, empty implementation.
 //               }  //actl if that's the case, dun even nd the else loop
@@ -820,7 +826,7 @@ public class IdentifyCornerOfInputScreen_showMultipleObjectsOnScreen extends App
 //                     //actl kinda dun nd, cos once clear flags set to off, we dun nd to bother if flag still on, CountDownTimer's next OnTick() will help us to disable/settle it.
 //               }
 
-           }
+        }
 
 
 
@@ -840,7 +846,7 @@ public class IdentifyCornerOfInputScreen_showMultipleObjectsOnScreen extends App
             distance2 = computeEuclideanDistance(r4centroid,p1);   //p1 is the centroid value of our Hand held object, the largest blob, is computed frame by frame Real time.
 //            if (distance2 < 65) {
             if (distance2 < 120) {      //increase dist detection threshold to +/- radius 120, cos when user stand at a far dist away from screen, object becomes vry small, vry hard to hit the rect centroid, so threshold acceptance must increase!
-                                        //=D YUP, MUCH BETTER!  :D
+                //=D YUP, MUCH BETTER!  :D
 
                 if (clear4 == true) {
                     Log.d("scored", "topLeft");
@@ -850,7 +856,7 @@ public class IdentifyCornerOfInputScreen_showMultipleObjectsOnScreen extends App
                 }
             }
 
-         }
+        }
 
 
         if (flag3 == true){    //object 3 & 1
@@ -928,6 +934,7 @@ public class IdentifyCornerOfInputScreen_showMultipleObjectsOnScreen extends App
 
         return distance;   //Impt!
     }
+
 
     public void computeScore(){   //calculates & tracks the total number of objects matched successfully thus far.
         score += 1;
