@@ -63,7 +63,7 @@ import static android.hardware.Camera.Parameters.PREVIEW_FPS_MIN_INDEX;
 
 //plot circle/squares @ the 4 edges of the screen!
 
-public class IdentifyCornerOfInputScreen_CountDownLives_handleZeroLogic_4Flags extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2 {
+public class IdentifyCornerOfInputScreen_CountDownLives_handleZeroLogic_1obj_4Flags extends AppCompatActivity implements CameraBridgeViewBase.CvCameraViewListener2 {
     //JavaCameraView javaCameraView;
     //    CameraBridgeViewBase cameraBridgeViewBase;
     customSurfaceView cameraBridgeViewBase;    //cameraBridgeViewBase change to instance of customSurfaceView class to access both Camera mCamera object + CBase class!
