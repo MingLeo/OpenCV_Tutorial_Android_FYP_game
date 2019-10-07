@@ -302,7 +302,7 @@ public class IdentifyCornerOfInputScreen_showMultipleObjectsOnScreen_2obj_6Flags
                         onPause();
                     }
                     //set flag 4, DO SOMETHING ELSE.
-                    Log.d("flag 4","heehee");   //:o finally showing :)
+                    Log.d("flag 2","heehee");   //:o finally showing :)
                     flag1=false; clear1=true;
                     flag2=false; clear2=false;
                     flag3=true; clear3=true;   //flag3 - object 3 & 1
@@ -334,7 +334,7 @@ public class IdentifyCornerOfInputScreen_showMultipleObjectsOnScreen_2obj_6Flags
                         onPause();
                     }
                     //set flag 4, DO SOMETHING ELSE.
-                    Log.d("flag 4","heehee");   //:o finally showing :)
+                    Log.d("flag 3","heehee");   //:o finally showing :)
                     flag1=false; clear1=false;
                     flag2=false; clear2=false;
                     flag3=false; clear3=true;
@@ -366,7 +366,7 @@ public class IdentifyCornerOfInputScreen_showMultipleObjectsOnScreen_2obj_6Flags
                         onPause();
                     }
                     //set flag 4, DO SOMETHING ELSE.
-                    Log.d("flag 4","heehee");   //:o finally showing :)
+                    Log.d("flag 4","gaga");   //:o finally showing :)
                     flag1=false; clear1=true;
                     flag2=false; clear2=true;
                     flag3=false; clear3=false;
