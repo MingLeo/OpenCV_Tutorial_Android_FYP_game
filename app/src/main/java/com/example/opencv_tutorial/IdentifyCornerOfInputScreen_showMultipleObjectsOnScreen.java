@@ -526,7 +526,8 @@ public class IdentifyCornerOfInputScreen_showMultipleObjectsOnScreen extends App
 
         LargestBlobDetection();
 //        plotObjectBox1atAtimeOnUI();   //Maybe plot 1 @ a time we use green color
-        plotMultipleObjectOnUI();   //multiple box, we plot diff colour? See how bah, Maybe red, so color (255,0,0).
+//        plotMultipleObjectOnUI();   //multiple box, we plot diff colour? See how bah, Maybe red, so color (255,0,0).
+        plotObjectsOnUI();   //multiple box, we plot diff colour? See how bah, Maybe red, so color (255,0,0).
 
         matchObject();   //method calls EuclideanDistance() &  UpdateScore()
 
@@ -615,7 +616,8 @@ public class IdentifyCornerOfInputScreen_showMultipleObjectsOnScreen extends App
 
 
 //    public void plotObjectBox1atAtimeOnUI(){
-    public void plotMultipleObjectOnUI(){
+//    public void plotMultipleObjectOnUI(){
+    public void plotObjectsOnUI(){
 
         //==== pLOT/DRaW 4 floodfilled RECTANGLES ON THE 4 CORNERS OF THE SCREEN 1 at a time.  Fixed positions!  =========================
 
@@ -775,92 +777,138 @@ public class IdentifyCornerOfInputScreen_showMultipleObjectsOnScreen extends App
 
 
 
+
     public void matchObject(){
 
-           if (flag1 == true){   //object 1 & 4
+           if (flag1 == true) {   //object 1 & 4
 
-                distance1 = computeEuclideanDistance(r1centroid,p1);
-                if (distance1 < 65){
-                    Log.d("scored","topLeft");
-        //            computeScore();
+               distance1 = computeEuclideanDistance(r1centroid, p1);
+//               if (distance1 < 65) {
+               if (distance1 < 120) {   //increase dist detection threshold to +/- radius 120, cos when user stand at a far dist away from screen, object becomes vry small, vry hard to hit the rect centroid, so threshold acceptance must increase!
+                                        //=D YUP, MUCH BETTER!  :D
+                   if (clear1 == true) {   //this helps us ensure that computeScore does not execute REPEATEDLY, cos EVEN THOUGH clear flag is down, but the fact that flag still remain true if either clear flag is still on, it will still silently execute that object in the background even though it does not show it, so nd another level of check! That's why earloer w/o this check, code keeps computing the score in the object's box in the background.
+                       Log.d("scored", "topLeft");
+                       computeScore();
 //                    flag1=false;   //remove object from screen, stop displaying, cos scored alrdy
-                    clear1=false;  //switch rect object off, stop displaying the rect on UI + don't deduct live cos scored in time.
-                }
-
-               distance2 = computeEuclideanDistance(r4centroid,p1);   //p1 is the centroid value of our Hand held object, the largest blob, is computed frame by frame Real time.
-               if (distance2 < 65){
-                   Log.d("scored","topLeft");
-        //            computeScore();
-//                   flag1=false;   //remove object from screen, stop displaying, cos scored alrdy
-                   clear4=false;  //Flag serves/affects 2 purpose:  Lives + Rect object display.
+                       clear1 = false;  //switch rect object off, stop displaying the rect on UI + don't deduct live cos scored in time.   //this updates the flag in the countDownTimer =D.
+                   }
+//                   else {  //if (clear1==false) alrdy, we dun do anymore computation.
+//                       //break;   //Error: break outside switch or loop
+//                       //since else if-else loop just executes one, no nd to break out loop once it finish execution.
+//                       //if no implementation, just leave it as blank  :)
+//                   }
+//
+//                   //actl if that's the case, dun even nd the else loop
                }
 
+               distance2 = computeEuclideanDistance(r4centroid, p1);   //p1 is the centroid value of our Hand held object, the largest blob, is computed frame by frame Real time.
+//               if (distance2 < 65) {
+               if (distance2 < 120) {
+                   if (clear4 == true) {
+                       Log.d("scored", "topLeft");
+                       computeScore();
+//                   flag1=false;   //remove object from screen, stop displaying, cos scored alrdy
+                       clear4 = false;  //Flag serves/affects 2 purpose:  Lives + Rect object display.    //this updates the flag in the countDownTimer =D.
+                   }
+               }
+//               else {
+//                   //want it to reamain as status quo & do nothing, so, empty implementation.
+//               }  //actl if that's the case, dun even nd the else loop
+
+
 //               if (clear1==false && clear4==false){
-//
+//                     //actl kinda dun nd, cos once clear flags set to off, we dun nd to bother if flag still on, CountDownTimer's next OnTick() will help us to disable/settle it.
 //               }
 
-            }
+           }
 
 
 
         if (flag2 == true){   //object 2 & 4
 
             distance1 = computeEuclideanDistance(r2centroid,p1);
-            if (distance1 < 65){
-                Log.d("scored","topLeft");
-                //            computeScore();
+//            if (distance1 < 65) {
+            if (distance1 < 120) {
+                if (clear2 == true) {   //this ensures that computeScore will only be executed Once, cos no matter what flag will remain On/True/Open when either Object is still displayed (clear==true)
+                    Log.d("scored", "topLeft");
+                    computeScore();
 //                flag2=false;   //remove object from screen, stop displaying, cos scored alrdy
-                clear2=false;  //responsible for keeping track of Lives, whether to deduct anot.
+                    clear2 = false;  //this updates the flag in the countDownTimer =D.
+                }
             }
 
             distance2 = computeEuclideanDistance(r4centroid,p1);   //p1 is the centroid value of our Hand held object, the largest blob, is computed frame by frame Real time.
-            if (distance2 < 65){
-                Log.d("scored","topLeft");
-                //            computeScore();
+//            if (distance2 < 65) {
+            if (distance2 < 120) {      //increase dist detection threshold to +/- radius 120, cos when user stand at a far dist away from screen, object becomes vry small, vry hard to hit the rect centroid, so threshold acceptance must increase!
+                                        //=D YUP, MUCH BETTER!  :D
+
+                if (clear4 == true) {
+                    Log.d("scored", "topLeft");
+                    computeScore();
 //                flag2=false;   //remove object from screen, stop displaying, cos scored alrdy
-                clear4=false;  //responsible for keeping track of Lives, whether to deduct anot.
+                    clear4 = false;  //this updates the flag in the countDownTimer =D.
+                }
             }
+
          }
+
 
         if (flag3 == true){    //object 3 & 1
 
             distance1 = computeEuclideanDistance(r3centroid,p1);
-            if (distance1 < 65){
-                Log.d("scored","topLeft");
-                //            computeScore();
+//            if (distance1 < 65) {
+            if (distance1 < 120) {
+                if (clear3 == true) {
+                    Log.d("scored", "topLeft");
+//                computeScore();
 //                flag3=false;   //remove object from screen, stop displaying, cos scored alrdy
-                clear3=false;  //responsible for keeping track of Lives, whether to deduct anot.
+                    clear3 = false;  //responsible for keeping track of Lives, whether to deduct anot.
+                }
             }
 
             distance2 = computeEuclideanDistance(r1centroid,p1);   //p1 is the centroid value of our Hand held object, the largest blob, is computed frame by frame Real time.
-            if (distance2 < 65){
-                Log.d("scored","topLeft");
-                //            computeScore();
+//            if (distance2 < 65) {
+            if (distance2 < 120) {
+                if (clear1 == true) {
+                    Log.d("scored", "topLeft");
+//                            computeScore();
 //                flag3=false;   //remove object from screen, stop displaying, cos scored alrdy
-                clear1=false;  //responsible for keeping track of Lives, whether to deduct anot.
+                    clear1 = false;  //responsible for keeping track of Lives, whether to deduct anot.    //this updates the flag in the countDownTimer =D.
+                }
             }
+
+//            if (clear3==false || clear1==false){
+//                computeScore();    //not a good idea, cos is compute after flag is done, not shown real time on user screen + does not prevent code from executing rect object in background.
+//            }
         }
 
         if (flag4 == true){    //object 3 & 4
 
             distance1 = computeEuclideanDistance(r3centroid,p1);
-            if (distance1 < 65){
-                Log.d("scored","topLeft");
-                //            computeScore();
+//            if (distance1 < 65) {
+            if (distance1 < 120) {
+                if (clear3==true) {
+                    Log.d("scored", "topLeft");
+                    computeScore();
 //                flag4=false;   //remove object from screen, stop displaying, cos scored alrdy
-                clear3=false;  //responsible for keeping track of Lives, whether to deduct anot.
+                    clear3 = false;  //responsible for keeping track of Lives, whether to deduct anot.    //this updates the flag in the countDownTimer =D.
+                }
             }
 
             distance2 = computeEuclideanDistance(r4centroid,p1);   //p1 is the centroid value of our Hand held object, the largest blob, is computed frame by frame Real time.
-            if (distance2 < 65){
-                Log.d("scored","topLeft");
-                //            computeScore();
+//            if (distance2 < 65) {
+            if (distance2 < 120) {
+                if (clear4==true) {
+                    Log.d("scored", "topLeft");
+                    computeScore();
 //                flag4=false;   //remove object from screen, stop displaying, cos scored alrdy
-                clear4=false;  //responsible for keeping track of Lives, whether to deduct anot.
+                    clear4 = false;  //responsible for keeping track of Lives, whether to deduct anot.
+                }
             }
         }
 
-}
+    }
+
 
 
     public double computeEuclideanDistance(Point a, Point b){
@@ -879,6 +927,11 @@ public class IdentifyCornerOfInputScreen_showMultipleObjectsOnScreen extends App
         }
 
         return distance;   //Impt!
+    }
+
+    public void computeScore(){   //calculates & tracks the total number of objects matched successfully thus far.
+        score += 1;
+        scoreText.setText(String.valueOf(score));
     }
 
 
