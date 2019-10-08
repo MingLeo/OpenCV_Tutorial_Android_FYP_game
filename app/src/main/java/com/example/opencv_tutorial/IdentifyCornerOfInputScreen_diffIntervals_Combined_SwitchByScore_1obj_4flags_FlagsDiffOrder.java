@@ -217,12 +217,22 @@ public class IdentifyCornerOfInputScreen_diffIntervals_Combined_SwitchByScore_1o
 //                }
 
 
-//            Timer2 = new CountDownTimer(8000, 2000) {    //3 sec intervals
+//            Timer2 = new CountDownTimer(8000, 2000) {    //2 sec intervals
 //                    if (secsLeft == 7) {    //if this works, the next step is to test on OnCameraFrame}
 //                    if (secsLeft == 5) {    //if this works, the next step is to test on OnCameraFrame}
 //                    if (secsLeft == 3) {    //if this works, the next step is to test on OnCameraFrame}
 //                    if (secsLeft == 1) {    //if this works, the next step is to test on OnCameraFrame}
 //                }
+
+
+//            Timer1 = new CountDownTimer(4000, 1000) {    //1 sec intervals
+//                    if (secsLeft == 3) {    //if this works, the next step is to test on OnCameraFrame}
+//                    if (secsLeft == 2) {    //if this works, the next step is to test on OnCameraFrame}
+//                    if (secsLeft == 1) {    //if this works, the next step is to test on OnCameraFrame}
+//                    if (secsLeft == 0) {    //if this works, the next step is to test on OnCameraFrame}
+//                }
+
+
 
 //        final CountDownTimer Timer4 = new CountDownTimer(8000, 2000) {
         Timer4 = new CountDownTimer(4000, 1000) {    //ORDER OF APPEARANCE:  2, 4, 3, 1
@@ -831,7 +841,7 @@ public class IdentifyCornerOfInputScreen_diffIntervals_Combined_SwitchByScore_1o
         Timer3.cancel();
         Timer4.cancel();// Mmm.... seems ok leh, no prob even when Timer4 not yet instantiated, nvr throw NPE. Seems like the specific Timer will reference and see if it has a corresponding cancel() function attach to it, else it just ignores.
 
-        Log.v("","Timer Cancelled");
+        Log.v("","ALL Timers Cancelled");
 
 //        //Not working Leh :(
 
@@ -1165,7 +1175,8 @@ public class IdentifyCornerOfInputScreen_diffIntervals_Combined_SwitchByScore_1o
         // https://developer.android.com/reference/java/util/concurrent/CountDownLatch
         if (flag1 == true){
             distance1 = computeEuclideanDistance(r1centroid,p1);
-            if (distance1 < 65){
+//            if (distance1 < 65){   //threshold too small, becomes a prob when user stands far away + object held is small.
+            if (distance1 < 120){
                 Log.d("scored","topLeft");
                 computeScore();
                 flag1=false;   //remove object from screen, stop displaying, cos scored alrdy
@@ -1190,7 +1201,8 @@ public class IdentifyCornerOfInputScreen_diffIntervals_Combined_SwitchByScore_1o
 
         if (flag2 == true){
             distance1 = computeEuclideanDistance(r2centroid,p1);
-            if (distance1 < 65){
+//            if (distance1 < 65){
+            if (distance1 < 120){
 //                Log.d("Ahh..","topRight & Object matched");
                 Log.d("scored","topRight");
                 computeScore();
@@ -1201,7 +1213,8 @@ public class IdentifyCornerOfInputScreen_diffIntervals_Combined_SwitchByScore_1o
 
         if (flag3 == true){
             distance1 = computeEuclideanDistance(r3centroid,p1);
-            if (distance1 < 65){   //threshold to qualify as a match!
+//            if (distance1 < 65){   //
+            if (distance1 < 120){   //threshold to qualify as a match!
                 Log.d("scored","bottomLeft");
                 computeScore();
                 flag3=false;
@@ -1211,7 +1224,8 @@ public class IdentifyCornerOfInputScreen_diffIntervals_Combined_SwitchByScore_1o
 
         if (flag4 == true){
             distance1 = computeEuclideanDistance(r4centroid,p1);
-            if (distance1 < 65){   //threshold value in order to qualify as a positive match!
+//            if (distance1 < 65){   //threshold value in order to qualify as a positive match!
+            if (distance1 < 120){   //threshold value in order to qualify as a positive match!
                 Log.d("scored","bottomRight");
                 computeScore();
                 flag4=false;
