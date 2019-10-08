@@ -271,7 +271,7 @@ public class IdentifyCornerOfInputScreen_diffIntervals_Combined_SwitchByScore_1o
                             onPause();
                         }
                     }
-                    //set flag 4, DO SOMETHING ELSE.
+
                     Log.d("flag 1", "yay");   //:o finally showing :)
                     flag1 = false; clear1 = false;
                     flag2 = true; clear2 = true;
@@ -293,7 +293,7 @@ public class IdentifyCornerOfInputScreen_diffIntervals_Combined_SwitchByScore_1o
                             onPause();
                         }
                     }
-                    //set flag 4, DO SOMETHING ELSE.
+
                     Log.d("flag 2", "HOHO");   //:o finally showing :)
                     flag1 = false; clear1 = false;
                     flag2 = false; clear2 = false;
@@ -315,7 +315,7 @@ public class IdentifyCornerOfInputScreen_diffIntervals_Combined_SwitchByScore_1o
                             onPause();
                         }
                     }
-                    //set flag 4, DO SOMETHING ELSE.
+
                     Log.d("flag 3", "heehee");   //:o finally showing :)
                     flag1 = false; clear1 = false;
                     flag2 = false; clear2 = false;
@@ -337,7 +337,7 @@ public class IdentifyCornerOfInputScreen_diffIntervals_Combined_SwitchByScore_1o
                             onPause();
                         }
                     }
-                    //set flag 4, DO SOMETHING ELSE.
+
                     Log.d("flag 4", "gaga");   //:o finally showing :)
                     flag1 = true; clear1 = true;
                     flag2 = false; clear2 = false;
