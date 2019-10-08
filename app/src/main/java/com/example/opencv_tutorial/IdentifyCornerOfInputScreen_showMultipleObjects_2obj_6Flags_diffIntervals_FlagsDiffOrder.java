@@ -371,7 +371,6 @@ public class IdentifyCornerOfInputScreen_showMultipleObjects_2obj_6Flags_diffInt
 
 
 
-
         Timer8 = new CountDownTimer(8000, 2000) {
 //        Timer1 = new CountDownTimer(24000, 4000) {
 
@@ -526,7 +525,6 @@ public class IdentifyCornerOfInputScreen_showMultipleObjects_2obj_6Flags_diffInt
             }  //enclosing bracket for onFinish()
 
         };
-
 
 
 
@@ -1460,7 +1458,11 @@ public class IdentifyCornerOfInputScreen_showMultipleObjects_2obj_6Flags_diffInt
 
 
 
+
+
+
     public void matchObject(){
+
 
         if (flag5 == true) {   //object 1 & 4
             Log.d("f1ag6", "object 1 & 4");
@@ -1504,7 +1506,6 @@ public class IdentifyCornerOfInputScreen_showMultipleObjects_2obj_6Flags_diffInt
 //               }
 
         }
-
 
 
         if (flag6 == true){   //object 2 & 4
@@ -1648,6 +1649,7 @@ public class IdentifyCornerOfInputScreen_showMultipleObjects_2obj_6Flags_diffInt
 
 
 
+
     public double computeEuclideanDistance(Point a, Point b){
 
         double distance = 0.0;   //internal method var, only exists within the lifecycle of this var.
@@ -1665,6 +1667,8 @@ public class IdentifyCornerOfInputScreen_showMultipleObjects_2obj_6Flags_diffInt
 
         return distance;   //Impt!
     }
+
+
 
 
     public void computeScore(){   //calculates & tracks the total number of objects matched successfully thus far.
