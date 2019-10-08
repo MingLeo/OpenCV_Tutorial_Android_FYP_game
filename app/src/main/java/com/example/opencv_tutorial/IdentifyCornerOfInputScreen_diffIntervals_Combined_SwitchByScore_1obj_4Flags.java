@@ -88,8 +88,8 @@ public class IdentifyCornerOfInputScreen_diffIntervals_Combined_SwitchByScore_1o
 //    boolean flag6 = false;  //flag6 - object 2 & 3      //simply just have more configurations/combinations, but rect obj positions still the same!
 
 
-
     int globalLoopCounter=0;
+
 
     CountDownTimer Timer1, Timer2, Timer3, Timer4;
 
@@ -109,7 +109,7 @@ public class IdentifyCornerOfInputScreen_diffIntervals_Combined_SwitchByScore_1o
     //    long startTime4, timeInterval4;
 
     TextView LivesText;
-    int Lives = 14;  //initialize 3 Lives @ start of game
+    int Lives = 40;  //initialize 3 Lives @ start of game
     //maybe if want more complex, after each 4 rounds, if (Lives<3) {Lives+=1}
     TextView scoreText;
     int score;
@@ -644,6 +644,8 @@ public class IdentifyCornerOfInputScreen_diffIntervals_Combined_SwitchByScore_1o
 //                    e3.setText(String.valueOf(mynumber));
 //                }
 
+
+
                     if (secsLeft == 15) {    //if this works, the next step is to test on OnCameraFrame
                         if (clear4 == true) {
                             Lives -= 1;
@@ -666,6 +668,7 @@ public class IdentifyCornerOfInputScreen_diffIntervals_Combined_SwitchByScore_1o
                         Log.d("bool ", "flag3: " + flag3);
                         Log.d("bool ", "flag4: " + flag4);
                     }
+
 
                     if (secsLeft == 11) {    //if this works, the next step is to test on OnCameraFrame
                         if (clear1 == true) {
@@ -748,7 +751,7 @@ public class IdentifyCornerOfInputScreen_diffIntervals_Combined_SwitchByScore_1o
 
                 Log.d("Elapsed Time since bootup bef sleep: ", "" + SystemClock.elapsedRealtime());
                 SystemClock.sleep(50);
-                Log.d("SystemClock.Sleep", "5s");   // =D  Rly Worked, added a delay of 5s, puase the Whole Damn Fucking thing.  Rly slept for 5s, to "Rechar
+                Log.d("SystemClock.Sleep", "50ms");   // =D  Rly Worked, added a delay of 5s, puase the Whole Damn Fucking thing.  Rly slept for 5s, to "Rechar
                 //NOT IDEAL TO PUT SLEEP ON MAIN THREAD, COS IT STOPS THE ENTIRE MAIN THREAD, FRAME FREEZES!  Hang Type of feel.
                 Log.d("Elapsed Time since bootup aft sleep: ", "" + SystemClock.elapsedRealtime());
 
