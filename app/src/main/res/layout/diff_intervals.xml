@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".IdentifyCornerOfInputScreen_showMultipleObjectsOnScreen">
+    tools:context=".IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Flags_diffIntervals_FlagsDiffOrder">
 
     <!--    <org.opencv.android.JavaCameraView-->
 

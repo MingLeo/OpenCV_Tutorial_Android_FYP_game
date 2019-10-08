@@ -18,10 +18,9 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
     <!--  android:theme="@style/AppTheme"  -->
 
-        <activity android:name=".IdentifyCornerOfInputScreen_showMultipleObjectsOnScreen"
+        <activity android:name=".IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Flags_diffIntervals_FlagsDiffOrder"
             android:screenOrientation="portrait"
-            android:configChanges="keyboardHidden|orientation"
-            >
+            android:configChanges="keyboardHidden|orientation">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
