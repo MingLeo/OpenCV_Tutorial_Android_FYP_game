@@ -118,12 +118,15 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
     //    long startTime4, timeInterval4;
 
     TextView LivesText;
-    int Lives = 40;  //initialize 3 Lives @ start of game
+    int Lives = 4;  //initialize 3 Lives @ start of game
     //maybe if want more complex, after each 4 rounds, if (Lives<3) {Lives+=1}
     TextView scoreText;
-    int score;
+    int score=0;   //to display score in Alert Dialogue box for me to record.
 
-
+//    int currentLevel=0;    //keep track of the highest level Player currently in before death,
+                           // to display back to Player in the Alert Dialogue box upon Lives end
+                           // just so to facilitate me to record it.
+                           // ACTL IS THAT A GOOD THING? Cos from score I can alrdy determine which Level user is in.
 
 
     @Override
@@ -265,7 +268,7 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
                 secsLeft = (millisUntilFinished / 1000);
 
                 Log.d("seconds remaining: ", "" + secsLeft);  // =D works, only prints out @ every 4 secs interval !
-                Log.d("", "Timer1");
+                Log.d("", "Timer9");
 
 //                if (score < 10) {   //no nd to check anymore cos final stage, just let user keep playing until die.
 
@@ -429,7 +432,7 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
                 Log.d("seconds remaining: ", "" + secsLeft);  // =D works, only prints out @ every 4 secs interval !
                 Log.d("", "Timer8");
 
-                if (score < 74) {
+                if (score < 78) {
 
                     if (secsLeft == 7) {    //flag1==true   //object 1 & 4
 
@@ -565,7 +568,7 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
                 //NOT IDEAL TO PUT SLEEP ON MAIN THREAD, COS IT STOPS THE ENTIRE MAIN THREAD, FRAME FREEZES!  Hang Type of feel.
                 Log.d("Elapsed Time since bootup aft sleep: ","" + SystemClock.elapsedRealtime());
 
-                if (score<74){
+                if (score<78){
                     start();
                 }else {
                     cancel();    // :D :D :D YASSS!  IT FREAKING WORKED!  Loop on forever . HAHAHAHHAA! YAY! JOY TO THE WORLD!
@@ -586,7 +589,7 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
                 Log.d("seconds remaining: ", "" + secsLeft);  // =D works, only prints out @ every 4 secs interval !
                 Log.d("", "Timer4");
 
-                if (score < 62) {
+                if (score < 66) {
 
                     if (secsLeft == 3) {    //if this works, the next step is to test on OnCameraFrame
                         if (clear1 == true) {
@@ -705,7 +708,7 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
                 //NOT IDEAL TO PUT SLEEP ON MAIN THREAD, COS IT STOPS THE ENTIRE MAIN THREAD, FRAME FREEZES!  Hang Type of feel.
                 Log.d("Elapsed Time since bootup aft sleep: ", "" + SystemClock.elapsedRealtime());
 
-                if (score<62){
+                if (score<66){
                     start();
                 }else {
                     cancel();    // :D :D :D YASSS!  IT FREAKING WORKED!  Loop on forever . HAHAHAHHAA! YAY! JOY TO THE WORLD!
@@ -726,7 +729,7 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
                 Log.d("seconds remaining: ", "" + secsLeft);  // =D works, only prints out @ every 4 secs interval !
                 Log.d("", "Timer7");
 
-                if (score < 54) {
+                if (score < 58) {
 
                     if (secsLeft == 11) {    //flag1==true   //object 1 & 4
 
@@ -862,7 +865,7 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
                 //NOT IDEAL TO PUT SLEEP ON MAIN THREAD, COS IT STOPS THE ENTIRE MAIN THREAD, FRAME FREEZES!  Hang Type of feel.
                 Log.d("Elapsed Time since bootup aft sleep: ","" + SystemClock.elapsedRealtime());
 
-                if (score<54){
+                if (score<58){
                     start();
                 }else {
                     cancel();    // :D :D :D YASSS!  IT FREAKING WORKED!  Loop on forever . HAHAHAHHAA! YAY! JOY TO THE WORLD!
@@ -884,7 +887,7 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
                 Log.d("seconds remaining: ", "" + secsLeft);  // =D works, only prints out @ every 4 secs interval !
                 Log.d("", "Timer6");
 
-                if (score < 42) {
+                if (score < 44) {
 
                     if (secsLeft == 15) {    //flag1==true   //object 1 & 4
 
@@ -1020,11 +1023,12 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
                 //NOT IDEAL TO PUT SLEEP ON MAIN THREAD, COS IT STOPS THE ENTIRE MAIN THREAD, FRAME FREEZES!  Hang Type of feel.
                 Log.d("Elapsed Time since bootup aft sleep: ","" + SystemClock.elapsedRealtime());
 
-                if (score<42){
+                if (score<44){
                     start();
                 }else {
                     cancel();    // :D :D :D YASSS!  IT FREAKING WORKED!  Loop on forever . HAHAHAHHAA! YAY! JOY TO THE WORLD!
                     Timer7.start();
+
                 }
             }  //enclosing bracket for onFinish()
 
@@ -1036,7 +1040,7 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
 
             public void onTick(long millisUntilFinished) {
 
-                if (score < 30) {   //same var score as the one used globally to keep track of all the scores!
+                if (score < 34) {   //same var score as the one used globally to keep track of all the scores!
 
                     secsLeft = (millisUntilFinished / 1000);
 
@@ -1148,12 +1152,13 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
                 Log.d("Elapsed Time since bootup aft sleep: ", "" + SystemClock.elapsedRealtime());
 
 //                start();    // :D :D :D YASSS!  IT FREAKING WORKED!  Loop on forever . HAHAHAHHAA! YAY! JOY TO THE WORLD!
-                if (score<30){
+                if (score<34){
                     start();   //loop/restart current Timer
                 }
                 else {
                     cancel();  //cancel current Timer
                     Timer6.start();   //start the New Timer, Timer2, with a faster Interval!
+
 
                     //CHEY, Apparently must put Timer2 above, in roder to INITIALIZE IT befroe Timer1, else code will think Timer2 not initialize yet. \CHEY, small but IMPT Concept! Same goes for all other variables! Rmbr to intialize like this! If nd to call a var within a method body, ND to place it ahead/bef omethod body in order to INITIALIZE IT!
                     //\**Seemingly small but IMPT Concept!  Same goes for all other variables! Rmbr to intialize like this!
@@ -1177,7 +1182,7 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
                 Log.d("seconds remaining: ", "" + secsLeft);  // =D works, only prints out @ every 4 secs interval !
                 Log.d("", "Timer5");
 
-                if (score < 20) {
+                if (score < 26) {
 
                     if (secsLeft == 19) {    //flag1==true   //object 1 & 4
 
@@ -1313,11 +1318,12 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
                 //NOT IDEAL TO PUT SLEEP ON MAIN THREAD, COS IT STOPS THE ENTIRE MAIN THREAD, FRAME FREEZES!  Hang Type of feel.
                 Log.d("Elapsed Time since bootup aft sleep: ","" + SystemClock.elapsedRealtime());
 
-                if (score<20){
+                if (score<26){
                     start();
                 }else {
                     cancel();    // :D :D :D YASSS!  IT FREAKING WORKED!  Loop on forever . HAHAHAHHAA! YAY! JOY TO THE WORLD!
                     Timer3.start();
+
                 }
             }  //enclosing bracket for onFinish()
 
@@ -1330,7 +1336,7 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
 
             public void onTick(long millisUntilFinished) {    //ORDER OF APPEARANCE:  3, 1, 4, 2
 
-                if (score < 12) {   //same var score as the one used globally to keep track of all the scores!
+                if (score < 16) {   //same var score as the one used globally to keep track of all the scores!
 
                     secsLeft = (millisUntilFinished / 1000);
 
@@ -1443,12 +1449,13 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
 
 //                start();    // :D :D :D YASSS!  IT FREAKING WORKED!  Loop on forever . HAHAHAHHAA! YAY! JOY TO THE WORLD!
 
-                if (score<12){
+                if (score<16){
                     start();   //loop/restart current Timer
                 }
                 else {
                     cancel();  //cancel current Timer
                     Timer5.start();   //start the New Timer, Timer2, with a faster Interval!
+
 
                     //CHEY, Apparently must put Timer2 above, in roder to INITIALIZE IT befroe Timer1, else code will think Timer2 not initialize yet. \CHEY, small but IMPT Concept! Same goes for all other variables! Rmbr to intialize like this! If nd to call a var within a method body, ND to place it ahead/bef omethod body in order to INITIALIZE IT!
                     //\**Seemingly small but IMPT Concept!  Same goes for all other variables! Rmbr to intialize like this!
@@ -1466,7 +1473,7 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
 
             public void onTick(long millisUntilFinished) {
 
-                if (score < 6) {   //same var score as the one used globally to keep track of all the scores!
+                if (score < 8) {   //same var score as the one used globally to keep track of all the scores!
 
                     secsLeft = (millisUntilFinished / 1000);
 
@@ -1594,7 +1601,7 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
 
 //                start();    // :D :D :D YASSS!  IT FREAKING WORKED!  Loop on forever . HAHAHAHHAA! YAY! JOY TO THE WORLD!
 
-                if (score<6){
+                if (score<8){
                     start();   //loop/restart current Timer
                 }
                 else {
@@ -1674,9 +1681,17 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
 //        //Not working Leh :(
 
         Log.v("Bef executing AlertDialog","");
+
+        String alert1= "You have ran out of Lives. Please try again! :D";
+        String alert2= "Your highest score is: ";
+
         new AlertDialog.Builder(this)
                 .setTitle("Game Ended")
-                .setMessage("You have ran out of Lives. Please try again! :D")
+//                .setMessage("You have ran out of Lives. Please try again! :D")
+//                .setMessage("")
+//                .setMessage("Your highest score is: ")
+                .setMessage(alert1 + "\n\n"+ alert2 + score)
+//                .setView(scoreText)
 
                 // Specifying a listener allows you to take an action before dismissing the dialog.
                 // The dialog is automatically dismissed when a dialog button is clicked.
@@ -1796,6 +1811,7 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
 
         LargestBlobDetection();
 //        plotObjectBox1atAtimeOnUI();
+
         plotObjectsOnUI();
 
         matchObject();
@@ -1819,6 +1835,20 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
         Imgproc.findContours(yellowMaskMorphed, contours, hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE, new Point(0, 0));   //returns a lis
 
         Log.d("contour", "size = " + contours.size());   //returns 21, 91, 120, 104, 116, 58, ......  varying contour size detected & returned. Observe how ceed 100.  :O WAOW!
+//        hierarchy.release();    //Maybe cos i nvr release the hierarchy Mat?
+
+//        Log.d("hierarchy", "dimensions= " + hierarchy.dims());   //print out the dimensions of the hierarchy!
+//        Log.d("hierarchy", "" + hierarchy);   //prints out the hierarchy Mat type & memory address reference!
+//
+//        int cols = hierarchy.cols();
+//        int rows = hierarchy.rows();
+//        for (int i = 0; i < rows; i++) {
+//            for (int j = 0; j < cols; j++) {
+////                hierarchyHolder.add(hierarchy.get(i,j));
+//                Log.d("hierarchy", "" + hierarchy.get(i, j).toString());   //hierarchy.get(i,j) is a double[] type.
+//            }
+//        }
+
 
         //======================= detect LARGEST CONTOUR function!  =D =D =D ======================
         double maxArea1 = 0;
@@ -1915,23 +1945,26 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
         r4centroid.y =(r4.br().y +r4.tl().y) / 2;
 
 
+        final Mat maskFloodFill = Mat.zeros(new Size(InputFrame.cols() + 2, InputFrame.rows() + 2), CvType.CV_8UC1);
+
+
         //YUPPA DEEDEE DOODLE FK EM THREADS!  IT WAS THE FKING THREADS THAT CAUSED THE iSSUE/PROB earlier!
         if(flag1 == true){   // FLATHERLY FATHERLY FUCKING WORKS!  =D
-            final Mat maskFloodFill = Mat.zeros(new Size(InputFrame.cols() + 2, InputFrame.rows() + 2), CvType.CV_8UC1);
+//            final Mat maskFloodFill = Mat.zeros(new Size(InputFrame.cols() + 2, InputFrame.rows() + 2), CvType.CV_8UC1);
             Imgproc.rectangle(InputFrame, r1.br(), r1.tl(), new Scalar(0, 255, 0), 4);    //top left corner
             Imgproc.floodFill(InputFrame, maskFloodFill, r1centroid, new Scalar(0,255,0), new Rect() , new Scalar(20,20,20),new Scalar(20,20,20),4);   //mm,r, cos 120 sometimes will glitch whole screen becomes green, instead of just the 4 corners only.
             Log.d("running top LEFT corner object", "");
         }
 
         if(flag2 == true){
-            final Mat maskFloodFill = Mat.zeros(new Size(InputFrame.cols() + 2, InputFrame.rows() + 2), CvType.CV_8UC1);
+//            final Mat maskFloodFill = Mat.zeros(new Size(InputFrame.cols() + 2, InputFrame.rows() + 2), CvType.CV_8UC1);
             Imgproc.rectangle(InputFrame, r2.br(), r2.tl(), new Scalar(0, 255, 0), 4);    //top right corner
             Imgproc.floodFill(InputFrame, maskFloodFill,r2centroid, new Scalar(0,255,0), new Rect() , new Scalar(20,20,20),new Scalar(20,20,20),4);
             Log.d("running top RIGHT corner object", "");
         }
 
         if(flag3 == true){
-            final Mat maskFloodFill = Mat.zeros(new Size(InputFrame.cols() + 2, InputFrame.rows() + 2), CvType.CV_8UC1);
+//            final Mat maskFloodFill = Mat.zeros(new Size(InputFrame.cols() + 2, InputFrame.rows() + 2), CvType.CV_8UC1);
             Imgproc.rectangle(InputFrame, r3.br(), r3.tl(), new Scalar(0, 255, 0), 4);    //top right corner
             Imgproc.floodFill(InputFrame, maskFloodFill,r3centroid, new Scalar(0,255,0), new Rect() , new Scalar(20,20,20),new Scalar(20,20,20),4);
             Log.d("running BOTTOM LEFT corner object", "");    //logs not working, not printing/showing on the logcat in the IDE!  :(
@@ -1939,7 +1972,7 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
 
         if(flag4 == true){
 
-            final Mat maskFloodFill = Mat.zeros(new Size(InputFrame.cols() + 2, InputFrame.rows() + 2), CvType.CV_8UC1);
+//            final Mat maskFloodFill = Mat.zeros(new Size(InputFrame.cols() + 2, InputFrame.rows() + 2), CvType.CV_8UC1);
             Imgproc.rectangle(InputFrame, r4.tl(), r4.br(), new Scalar(0, 255, 0), 4);    //top right corner
             Imgproc.floodFill(InputFrame, maskFloodFill,r4centroid, new Scalar(0,255,0), new Rect() , new Scalar(20,20,20),new Scalar(20,20,20),4);
             Log.d("running BOTTOM RIGHT corner object", "");
@@ -1948,7 +1981,7 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
 
         if(flag5 == true){   // FLATHERLY FATHERLY FUCKING WORKS!  =D
             Log.d("f1ag1", "object 1 & 4");
-            final Mat maskFloodFill = Mat.zeros(new Size(InputFrame.cols() + 2, InputFrame.rows() + 2), CvType.CV_8UC1);
+//            final Mat maskFloodFill = Mat.zeros(new Size(InputFrame.cols() + 2, InputFrame.rows() + 2), CvType.CV_8UC1);
 
             if (clear1==true) {
                 Imgproc.rectangle(InputFrame, r1.br(), r1.tl(), new Scalar(0, 255, 0), 4);    //Object 1: top left corner
@@ -1962,7 +1995,7 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
 
         if(flag6 == true){
             Log.d("f1ag2", "object 2 & 4");
-            final Mat maskFloodFill = Mat.zeros(new Size(InputFrame.cols() + 2, InputFrame.rows() + 2), CvType.CV_8UC1);
+//            final Mat maskFloodFill = Mat.zeros(new Size(InputFrame.cols() + 2, InputFrame.rows() + 2), CvType.CV_8UC1);
 
             if (clear2==true) {
                 Imgproc.rectangle(InputFrame, r2.br(), r2.tl(), new Scalar(0, 255, 0), 4);    //top right corner
@@ -1976,7 +2009,7 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
 
         if(flag7 == true){
             Log.d("f1ag3", "object 3 & 1");    //logs not working, not printing/showing on the logcat in the IDE!  :(
-            final Mat maskFloodFill = Mat.zeros(new Size(InputFrame.cols() + 2, InputFrame.rows() + 2), CvType.CV_8UC1);
+//            final Mat maskFloodFill = Mat.zeros(new Size(InputFrame.cols() + 2, InputFrame.rows() + 2), CvType.CV_8UC1);
 
             if (clear3==true) {
                 Imgproc.rectangle(InputFrame, r3.br(), r3.tl(), new Scalar(0, 255, 0), 4);    //bottom left corner
@@ -1990,7 +2023,7 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
 
         if(flag8 == true){
             Log.d("f1ag4", "object 3 & 4");
-            final Mat maskFloodFill = Mat.zeros(new Size(InputFrame.cols() + 2, InputFrame.rows() + 2), CvType.CV_8UC1);
+//            final Mat maskFloodFill = Mat.zeros(new Size(InputFrame.cols() + 2, InputFrame.rows() + 2), CvType.CV_8UC1);
 
             if (clear3==true) {
                 Imgproc.rectangle(InputFrame, r3.tl(), r3.br(), new Scalar(0, 255, 0), 4);    //bottom left corner
@@ -2004,7 +2037,7 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
 
         if(flag9 == true){
             Log.d("f1ag5", "object 1 & 2");
-            final Mat maskFloodFill = Mat.zeros(new Size(InputFrame.cols() + 2, InputFrame.rows() + 2), CvType.CV_8UC1);
+//            final Mat maskFloodFill = Mat.zeros(new Size(InputFrame.cols() + 2, InputFrame.rows() + 2), CvType.CV_8UC1);
 
             if (clear1==true) {
                 Imgproc.rectangle(InputFrame, r1.tl(), r1.br(), new Scalar(0, 255, 0), 4);    //bottom left corner
@@ -2018,7 +2051,7 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
 
         if(flag10 == true){
             Log.d("f1ag6", "object 2 & 3");
-            final Mat maskFloodFill = Mat.zeros(new Size(InputFrame.cols() + 2, InputFrame.rows() + 2), CvType.CV_8UC1);
+//            final Mat maskFloodFill = Mat.zeros(new Size(InputFrame.cols() + 2, InputFrame.rows() + 2), CvType.CV_8UC1);
 
             if (clear2==true) {
                 Imgproc.rectangle(InputFrame, r2.tl(), r2.br(), new Scalar(0, 255, 0), 4);    //bottom left corner
