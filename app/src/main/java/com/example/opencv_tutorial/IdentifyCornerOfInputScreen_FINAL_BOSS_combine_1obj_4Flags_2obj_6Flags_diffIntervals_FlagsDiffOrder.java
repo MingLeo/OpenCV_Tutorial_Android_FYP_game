@@ -1838,7 +1838,7 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
         Imgproc.findContours(yellowMaskMorphed, contours, hierarchy, Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE, new Point(0, 0));   //returns a lis
 
         Log.d("contour", "size = " + contours.size());   //returns 21, 91, 120, 104, 116, 58, ......  varying contour size detected & returned. Observe how ceed 100.  :O WAOW!
-//        hierarchy.release();    //Maybe cos i nvr release the hierarchy Mat?
+        hierarchy.release();    //Maybe cos i nvr release the hierarchy Mat?
 
 //        Log.d("hierarchy", "dimensions= " + hierarchy.dims());   //print out the dimensions of the hierarchy!
 //        Log.d("hierarchy", "" + hierarchy);   //prints out the hierarchy Mat type & memory address reference!
