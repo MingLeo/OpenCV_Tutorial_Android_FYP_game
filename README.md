@@ -65,7 +65,7 @@ Game development proceeded as follow:
   
   
 *7th phase: Pseudo-randomize display of rectangle location for each individual Timer
-  *Tried implementing a do-while loop to ensure that a different randomly-generated index value is created to set a different flag each time. However, execution of while loop on the main thread is unable to complete its computation within the lifetime of the frame (0.04 secs time period) before the next frame arrives.
+  * Tried implementing a do-while loop to ensure that a different randomly-generated index value is created to set a different flag each time. However, execution of while loop on the main thread is unable to complete its computation within the lifetime of the frame (0.04 secs time period) before the next frame arrives.
   * Self-assign order of flags for each timer, set different order.
   
   
