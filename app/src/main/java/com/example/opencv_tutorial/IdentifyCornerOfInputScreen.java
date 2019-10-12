@@ -57,6 +57,7 @@ public class IdentifyCornerOfInputScreen extends AppCompatActivity implements Ca
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hsv_colour);   //setting the layout view in accordance to the specifications of one of the layout resource file under res/layout
+//        setContentView(R.layout.diff_intervals);
 
         OpenCVLoader.initDebug();      //Performing a Debug check solely just for initialization purpose.
 
@@ -359,65 +360,65 @@ public class IdentifyCornerOfInputScreen extends AppCompatActivity implements Ca
 
 
 
-//        ObjectCreatorThread.createObject(InputFrame);   //run as a thread, out put each rect Thread by Thread
-        Log.d("creating Thread Object","");
-        ObjectCreatorThread o1 = new ObjectCreatorThread(InputFrame);   //run as a thread, out put each rect Thread by Thread
-        Log.d("Thread Object","created");
-        new Thread(o1).start();   //run as a thread, out put each rect Thread by Thread
-        Log.d("Running Thread Object","");
+////        ObjectCreatorThread.createObject(InputFrame);   //run as a thread, out put each rect Thread by Thread
+//        Log.d("creating Thread Object","");
+//        ObjectCreatorThread o1 = new ObjectCreatorThread(InputFrame);   //run as a thread, out put each rect Thread by Thread
+//        Log.d("Thread Object","created");
+//        new Thread(o1).start();   //run as a thread, out put each rect Thread by Thread
+//        Log.d("Running Thread Object","");
+//
+//        Set<ObjectCreatorThread> mySet = Collections.newSetFromMap(new ConcurrentHashMap<ObjectCreatorThread, Boolean>());
+////        HashSet<ObjectCreatorThread> set = Collections.newSetFromMap( new ConcurrentHashMap<ObjectCreatorThread,o1>() );
+//        synchronized(o1) {
+////            Lock myLock= new Lock();   //Lock() is an abstract method, cannot be implemented, cos Lock is an interface class, empty constructor, no implementation for that method yet.
+////            myLock.lock();
+//            mySet.add(o1);
+//        }
+//        synchronized(mySet) {
+//            for (Iterator<ObjectCreatorThread> i = mySet.iterator(); i.hasNext();) {
+//                ObjectCreatorThread obj= i.next();
+////                if (!obj.isSmt()) {
+//                if (!obj.equals(o1)) {
+//                    i.remove();
+//                }
+//            }
+//        }
 
-        Set<ObjectCreatorThread> mySet = Collections.newSetFromMap(new ConcurrentHashMap<ObjectCreatorThread, Boolean>());
-//        HashSet<ObjectCreatorThread> set = Collections.newSetFromMap( new ConcurrentHashMap<ObjectCreatorThread,o1>() );
-        synchronized(o1) {
-//            Lock myLock= new Lock();   //Lock() is an abstract method, cannot be implemented, cos Lock is an interface class, empty constructor, no implementation for that method yet.
-//            myLock.lock();
-            mySet.add(o1);
-        }
-        synchronized(mySet) {
-            for (Iterator<ObjectCreatorThread> i = mySet.iterator(); i.hasNext();) {
-                ObjectCreatorThread obj= i.next();
-//                if (!obj.isSmt()) {
-                if (!obj.equals(o1)) {
-                    i.remove();
-                }
+   ////=====================  =D WORKED! DREW 4 RECTANGLES ON THE 4 CORNERS OF THE SCREEN! ==============================
+
+
+        Rect r1 = new Rect(0,0,300,300);
+        Rect r2 = new Rect(772,0,300,300);
+        Rect r3 = new Rect(0,772,300,300);
+        Rect r4 = new Rect(772,772,300,300);
+
+        ArrayList<Rect> rect_array = new ArrayList<Rect>();
+        rect_array.add(r1);
+        rect_array.add(r2);
+        rect_array.add(r3);
+        rect_array.add(r4);
+
+
+//        final Mat maskCopyTo = Mat.zeros(InputFrame.size(), CvType.CV_8UC1); /// 创建copyTo方法的mask，大小与原图保持一致
+        final Mat maskFloodFill = Mat.zeros(new Size(InputFrame.cols() + 2, InputFrame.rows() + 2), CvType.CV_8UC1);    //as required in documentation https://docs.opencv.org/2.4/modules/imgproc/dType.8UC1);
+
+
+        if (rect_array.size() > 0) {   //if got more than 1 rect found in rect_array, draw them out!
+
+            Iterator<Rect> it2 = rect_array.iterator();
+            while (it2.hasNext()) {
+                Rect obj = it2.next();
+
+
+                Imgproc.rectangle(InputFrame, obj.br(), obj.tl(), new Scalar(0, 255, 0), 4);
+
+                Imgproc.floodFill(InputFrame, maskFloodFill,new Point((obj.tl().x +obj.br().x) / 2, (obj.tl().y + obj.br().y) / 2), new Scalar(0,255,0), new Rect() , new Scalar(120,120,120),new Scalar(120,120,120),4);
+
             }
         }
 
-//   ////=====================  =D WORKED! DREW 4 RECTANGLES ON THE 4 CORNERS OF THE SCREEN! ==============================
-//
-//
-//        Rect r1 = new Rect(0,0,300,300);
-//        Rect r2 = new Rect(772,0,300,300);
-//        Rect r3 = new Rect(0,772,300,300);
-//        Rect r4 = new Rect(772,772,300,300);
-//
-//        ArrayList<Rect> rect_array = new ArrayList<Rect>();
-//        rect_array.add(r1);
-//        rect_array.add(r2);
-//        rect_array.add(r3);
-//        rect_array.add(r4);
-//
-//
-////        final Mat maskCopyTo = Mat.zeros(InputFrame.size(), CvType.CV_8UC1); /// 创建copyTo方法的mask，大小与原图保持一致
-//        final Mat maskFloodFill = Mat.zeros(new Size(InputFrame.cols() + 2, InputFrame.rows() + 2), CvType.CV_8UC1);    //as required in documentation https://docs.opencv.org/2.4/modules/imgproc/dType.8UC1);
-//
-//
-//        if (rect_array.size() > 0) {   //if got more than 1 rect found in rect_array, draw them out!
-//
-//            Iterator<Rect> it2 = rect_array.iterator();
-//            while (it2.hasNext()) {
-//                Rect obj = it2.next();
-//
-//
-//                Imgproc.rectangle(InputFrame, obj.br(), obj.tl(), new Scalar(0, 255, 0), 4);
-//
-//                Imgproc.floodFill(InputFrame, maskFloodFill,new Point((obj.tl().x +obj.br().x) / 2, (obj.tl().y + obj.br().y) / 2), new Scalar(0,255,0), new Rect() , new Scalar(120,120,120),new Scalar(120,120,120),4);
-//
-//            }
-//        }
-//
-//
-//   ////============================================================================================
+
+   ////============================================================================================
 
 
 //   ////===================== 1ST SUCCESSFUL RECTANGLE DRAWN ON SCREEN! =D ==============================
