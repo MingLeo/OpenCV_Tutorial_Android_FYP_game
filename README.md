@@ -1,18 +1,16 @@
 # FYP Interactive EXERGame w Yellow Object Detection using OpenCV
 
 *Introduction:
-  * Exercise has always been perceived as catered only to a particular niche of people who are physically active. However, most of us do not fall within that category. A 2018 study on global health conducted by WHO reports what 1 in 3 Singaporeans do not get enough physical activity and that the weekly average targets for physical activity falls short of the global average for both genders. Figures published by *MOH (Ministry of Health) in 2018 has also indicated that 36.2% of Singaporeans aged 18-69 are overweight.
-  *The idea of achieving a healthy lifestyle through pain, fatigue, exhaustion simply pales in comparison to more comforting thoughts of Netflix to relax and food-delivery apps for indulgence.
-  *In addition, people with LOW SELF -ESTEEM fear the risk of embarrassment when they fall short of fitness level expectations, which makes the barrier to entry even higher for these group of ppl. 
+  * Exercise has always been perceived as catered only to a particular niche of people who are physically active. However, most of us do not fall within that category. A 2018 study on global health conducted by WHO reports what 1 in 3 Singaporeans do not get enough physical activity and that the weekly average targets for physical activity falls short of the global average for both genders. Figures published by MOH (Ministry of Health) in 2018 has also indicated that 36.2% of Singaporeans aged 18-69 are overweight. The idea of achieving a healthy lifestyle through pain, fatigue, exhaustion simply pales in comparison to more comforting thoughts of Netflix to relax and food-delivery apps for indulgence. In addition, people with LOW SELF -ESTEEM fear the risk of embarrassment when they fall short of fitness level expectations, which makes the barrier to entry even higher for these group of ppl. 
   * The use of OpenCv on Android for mobile is an acknowledgement to the fact that the mobile phones has played an increasingly significant role in our everday lives. We spend many hours of our waking time on the mobile phone, hence what better way to design an exercise app that is able to work solely with the built-in equipments that comes with our smartphone device & not require setup of specialized sensors/equipments.
   * In this project we decide to explore the usage of Camera for Exercising, instead of using special motion detection sensors such as LIDAR which us use in XBOX, KINECT, or the gyroscopes, accelerometers in our phone or fitness band which can only track a limited/specific type of motion, we want to allow/give users the freedom to be able to perform unrestricted, full range of body motions.
   *By utilizing the camera, we do not require the user to carry tracking equipment / device on their body while at the same time able to track the full range of the user's body & motion.
   
   
-Libraries used: OpenCv 3.1.0
-Gradele vers 3.5.0
+Libraries used: OpenCv 3.4.6
+Gradle vers 3.5.0
 
-Game performed in follow steps:
+Game development proceeded as follow:
 
 '''
 >
@@ -62,7 +60,7 @@ Game performed in follow steps:
   * When player clicks on the 'ok' button, we call the recreate() method to trigger a restart for the entire Lifecycle of the application, starting all over once again from OnCreate().
   
   
-*6th phase: Alter the pace of the game, to make it go faster over time.
+*6th phase: Alter the pace of the game, to make it go faster over time
   * Set multiple Timers with shorter intervals for each passing/consecutive timer.
   
   
@@ -71,7 +69,7 @@ Game performed in follow steps:
   * Self-assign order of flags for each timer, set different order.
   
   
-*8th phase: Condition/Logic to switch Timer using concept of Score.
+*8th phase: Condition/Logic to switch Timer using concept of Score
   * 2 appraoches were considered when deciding how to switch between timers. The first was to fixed it, after every 4 rounds, we switch to a faster timer, however that approach is not very heuristic as it does not take into account the player's ability to cope with the pace of the game at the current pace.
   * Hence to better match the game to the player's ability, we set the conditions for switching Timer to be tag to the player's score. Each Timer is tagged to a unique range of scores, when the Player's score falls within that range, we let the Timer loop inifinitely until the player either runs out of lives or hits the maximum score within the range, and we proceed to switch to the next timer with a shorter interval (faster pace).
   
