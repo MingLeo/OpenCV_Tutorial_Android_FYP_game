@@ -183,6 +183,38 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
         }
 
 
+    }    //enclosing bracket for OnCreate() method.
+
+
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == MY_CAMERA_REQUEST_CODE) {
+            if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                // user accepted your request, you can use camera now from here
+                Toast.makeText(getApplicationContext(), "Application will not run if permission not granted for camera services", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("Entered OnResume", "");
+
+        if (!OpenCVLoader.initDebug()) {
+            Toast.makeText(getApplicationContext(), "There is a problem with OpenCv", Toast.LENGTH_SHORT).show();  //if unable to conect to OpenCv upon resuthrwo this error
+        } else {
+            //            baseLoaderCallback.onManagerConnected(BaseLoaderCallback.SUCCESS);   //else, connect invoke callback to connect back to CameraBridgeView.
+
+            Log.d("Calling BaseLoaderCallback", "");
+        }
+
 
         //ok now lives count down working, but when 0, nd to terminate/restart game/pop, show something back to user.
 
@@ -271,6 +303,9 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
 
                 Log.d("seconds remaining: ", "" + secsLeft);  // =D works, only prints out @ every 4 secs interval !
                 Log.d("", "Timer9");
+
+//                Runtime.getRuntime().gc();    //call garbage collection @ every interval 4s/3s/2s/1s depending OnTick Interval of Timer, at least not on every frame, else will freeze/lag each frame = 0.04 sec, 1 sec will allow at least 20 frames to pass alrdy!
+                //Here too fast alrdy, GC every secon cos OnTick interval is 1 sec, maybe can make it 2 sec / 4 sec in the if logic/Perhaps even in onFinish() method?!?
 
 //                if (score < 10) {   //no nd to check anymore cos final stage, just let user keep playing until die.
 
@@ -408,6 +443,8 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
                 //NOT IDEAL TO PUT SLEEP ON MAIN THREAD, COS IT STOPS THE ENTIRE MAIN THREAD, FRAME FREEZES!  Hang Type of feel.
                 Log.d("Elapsed Time since bootup aft sleep: ", "" + SystemClock.elapsedRealtime());
 
+                Runtime.getRuntime().gc();   //so that every 4 sec then invoke 1 call to GC, smoothen the process, not so lag, let nativeObjs graudually build up naturally over 4 secs.
+
                 start();    //Let it Whip/Rip.  Let it loop on & on forever to  Whoop any  ZAI GOD PLAYER's  A S S   till they Ran out of Lives (a.k.a DIE)
                 //FINAL TIMER no nd to cancel, keep going on until user Dies when Lives zero, OnPause() method will call the cancel for this Timer9.
 
@@ -433,6 +470,9 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
 
                 Log.d("seconds remaining: ", "" + secsLeft);  // =D works, only prints out @ every 4 secs interval !
                 Log.d("", "Timer8");
+
+//                Runtime.getRuntime().gc();    //call garbage collection @ every interval 4s/3s/2s/1s depending OnTick Interval of Timer, at least not on every frame, else will freeze/lag each frame = 0.04 sec, 1 sec will allow at least 20 frames to pass alrdy!
+                //Here too fast alrdy, got 2 flags to set, but clear every 2 sec, maybe can alternate, like every 4 sec, specify gc under If statement!
 
                 if (score < 78) {
 
@@ -498,6 +538,7 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
 
 
                     if (secsLeft == 3) {    //flag3==true   //object 3 & 1
+                        Runtime.getRuntime().gc();
 
                         if (clear2 == true) {
                             Lives -= 1;
@@ -571,9 +612,11 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
                 Log.d("Elapsed Time since bootup aft sleep: ","" + SystemClock.elapsedRealtime());
 
                 if (score<78){
+                    Runtime.getRuntime().gc();
                     start();
                 }else {
                     cancel();    // :D :D :D YASSS!  IT FREAKING WORKED!  Loop on forever . HAHAHAHHAA! YAY! JOY TO THE WORLD!
+                    Runtime.getRuntime().gc();
                     Timer9.start();
                 }
             }  //enclosing bracket for onFinish()
@@ -590,6 +633,9 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
 
                 Log.d("seconds remaining: ", "" + secsLeft);  // =D works, only prints out @ every 4 secs interval !
                 Log.d("", "Timer4");
+
+//                Runtime.getRuntime().gc();    //call garbage collection @ every interval 4s/3s/2s/1s depending OnTick Interval of Timer, at least not on every frame, else will freeze/lag each frame = 0.04 sec, 1 sec will allow at least 20 frames to pass alrdy!
+                //Interval too fast 1 sec, not enuff time to let NativeObj build up naturally graudually resulting in freeze/lagged frames, Try move to onFinish() instead where Interval aft 4 sec then we force a GC!
 
                 if (score < 66) {
 
@@ -711,9 +757,11 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
                 Log.d("Elapsed Time since bootup aft sleep: ", "" + SystemClock.elapsedRealtime());
 
                 if (score<66){
+                    Runtime.getRuntime().gc();
                     start();
                 }else {
                     cancel();    // :D :D :D YASSS!  IT FREAKING WORKED!  Loop on forever . HAHAHAHHAA! YAY! JOY TO THE WORLD!
+                    Runtime.getRuntime().gc();
                     Timer8.start();
                 }
             }   //enclosing block for onFinish()
@@ -731,9 +779,13 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
                 Log.d("seconds remaining: ", "" + secsLeft);  // =D works, only prints out @ every 4 secs interval !
                 Log.d("", "Timer7");
 
+//                Runtime.getRuntime().gc();    //call garbage collection @ every interval 4s/3s/2s/1s depending OnTick Interval of Timer, at least not on every frame, else will freeze/lag each frame = 0.04 sec, 1 sec will allow at least 20 frames to pass alrdy!
+
+
                 if (score < 58) {
 
                     if (secsLeft == 11) {    //flag1==true   //object 1 & 4
+                        Runtime.getRuntime().gc();
 
                         if (clear1 == true) {
                             Lives -= 1;
@@ -795,6 +847,7 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
 
 
                     if (secsLeft == 5) {    //flag3==true   //object 3 & 1
+                        Runtime.getRuntime().gc();
 
                         if (clear1 == true) {
                             Lives -= 1;
@@ -871,6 +924,7 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
                     start();
                 }else {
                     cancel();    // :D :D :D YASSS!  IT FREAKING WORKED!  Loop on forever . HAHAHAHHAA! YAY! JOY TO THE WORLD!
+                    Runtime.getRuntime().gc();
                     Timer4.start();
                 }
             }  //enclosing bracket for onFinish()
@@ -888,6 +942,9 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
 
                 Log.d("seconds remaining: ", "" + secsLeft);  // =D works, only prints out @ every 4 secs interval !
                 Log.d("", "Timer6");
+
+                Runtime.getRuntime().gc();    //call garbage collection @ every interval 4s/3s/2s/1s depending OnTick Interval of Timer, at least not on every frame, else will freeze/lag each frame = 0.04 sec, 1 sec will allow at least 20 frames to pass alrdy!
+
 
                 if (score < 44) {
 
@@ -1042,17 +1099,15 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
 
             public void onTick(long millisUntilFinished) {
 
+                secsLeft = (millisUntilFinished / 1000);
+
+                Log.d("seconds remaining: ", "" + secsLeft);  // =D works, only prints out @ every 4 secs interval !
+                Log.d("", "Timer3");
+
+                Runtime.getRuntime().gc();    //call garbage collection @ every interval 4s/3s/2s/1s depending OnTick Interval of Timer, at least not on every frame, else will freeze/lag each frame = 0.04 sec, 1 sec will allow at least 20 frames to pass alrdy!
+
+
                 if (score < 34) {   //same var score as the one used globally to keep track of all the scores!
-
-                    secsLeft = (millisUntilFinished / 1000);
-
-                    Log.d("seconds remaining: ", "" + secsLeft);  // =D works, only prints out @ every 4 secs interval !
-                    Log.d("", "Timer3");
-
-                    //                for (int i=0; i<secsLeft; i++){
-                    //                    int mynumber = new Random().nextInt(100);
-                    //                    e3.setText(String.valueOf(mynumber));
-                    //                }
 
                     if (secsLeft == 7) {    //if this works, the next step is to test on OnCameraFrame
                         if (clear4 == true) {
@@ -1183,6 +1238,9 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
 
                 Log.d("seconds remaining: ", "" + secsLeft);  // =D works, only prints out @ every 4 secs interval !
                 Log.d("", "Timer5");
+
+                Runtime.getRuntime().gc();    //call garbage collection @ every interval 4s/3s/2s/1s depending OnTick Interval of Timer, at least not on every frame, else will freeze/lag each frame = 0.04 sec, 1 sec will allow at least 20 frames to pass alrdy!
+
 
                 if (score < 26) {
 
@@ -1338,17 +1396,20 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
 
             public void onTick(long millisUntilFinished) {    //ORDER OF APPEARANCE:  3, 1, 4, 2
 
+                secsLeft = (millisUntilFinished / 1000);
+
+                Log.d("seconds remaining: ", "" + secsLeft);  // =D works, only prints out @ every 4 secs interval !
+                Log.d("", "Timer2");
+//                for (int i=0; i<secsLeft; i++){
+//                    int mynumber = new Random().nextInt(100);
+//                    e3.setText(String.valueOf(mynumber));
+//                }
+
+
+                Runtime.getRuntime().gc();    //call garbage collection @ every interval 4s/3s/2s/1s depending OnTick Interval of Timer, at least not on every frame, else will freeze/lag each frame = 0.04 sec, 1 sec will allow at least 20 frames to pass alrdy!
+
+
                 if (score < 16) {   //same var score as the one used globally to keep track of all the scores!
-
-                    secsLeft = (millisUntilFinished / 1000);
-
-                    Log.d("seconds remaining: ", "" + secsLeft);  // =D works, only prints out @ every 4 secs interval !
-                    Log.d("", "Timer2");
-
-                    //                for (int i=0; i<secsLeft; i++){
-                    //                    int mynumber = new Random().nextInt(100);
-                    //                    e3.setText(String.valueOf(mynumber));
-                    //                }
 
                     if (secsLeft == 11) {    //if this works, the next step is to test on OnCameraFrame
                         if (clear2 == true) {
@@ -1475,18 +1536,16 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
 
             public void onTick(long millisUntilFinished) {
 
+                secsLeft = (millisUntilFinished / 1000);
+
+                Log.d("seconds remaining: ", "" + secsLeft);  // =D works, only prints out @ every 4 secs interval !
+                Log.d("", "Timer1");
+
+
+                Runtime.getRuntime().gc();    //call garbage collection @ every interval 4s/3s/2s/1s depending OnTick Interval of Timer, at least not on every frame, else will freeze/lag each frame = 0.04 sec, 1 sec will allow at least 20 frames to pass alrdy!
+
+
                 if (score < 8) {   //same var score as the one used globally to keep track of all the scores!
-
-                    secsLeft = (millisUntilFinished / 1000);
-
-                    Log.d("seconds remaining: ", "" + secsLeft);  // =D works, only prints out @ every 4 secs interval !
-                    Log.d("", "Timer1");
-//                for (int i=0; i<secsLeft; i++){
-//                    int mynumber = new Random().nextInt(100);
-//                    e3.setText(String.valueOf(mynumber));
-//                }
-
-
 
                     if (secsLeft == 15) {    //if this works, the next step is to test on OnCameraFrame
                         if (clear2 == true) {
@@ -1619,38 +1678,8 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
         }.start();
 
 
-    }    //enclosing bracket for OnCreate() method.
+    }   //enclosing bracket for onResume() method!
 
-
-
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        if (requestCode == MY_CAMERA_REQUEST_CODE) {
-            if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-                // user accepted your request, you can use camera now from here
-                Toast.makeText(getApplicationContext(), "Application will not run if permission not granted for camera services", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d("Entered OnResume", "");
-
-        if (!OpenCVLoader.initDebug()) {
-            Toast.makeText(getApplicationContext(), "There is a problem with OpenCv", Toast.LENGTH_SHORT).show();  //if unable to conect to OpenCv upon resuthrwo this error
-        } else {
-            //            baseLoaderCallback.onManagerConnected(BaseLoaderCallback.SUCCESS);   //else, connect invoke callback to connect back to CameraBridgeView.
-
-            Log.d("Calling BaseLoaderCallback", "");
-        }
-    }
 
 
     @Override
@@ -1912,6 +1941,14 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
         //        }catch(ArrayIndexOutOfBoundsException Ae){
         //            Log.d("ARRAYINDEX OUT OF BOUNDS EXCEPTION","DETECTED" + Ae);
         //        }
+
+        //take note that contours is an ArrayList<>()  we define above, see line 1743!
+        //is constantly filling in, we never clear it! Is constanly taking in background obj as Native Objects!
+//        contours.removeAll();  //Removes from this list all of its elements that are contained in the specified collection (optional operation).
+//        contours.clear();   //Removes all of the elements from this list (optional operation). The list will be empty after this call returns.
+//        Runtime.getRuntime().gc();   //https://stackoverflow.com/questions/14016732/how-to-free-object-in-android
+                                    //http://net-informations.com/java/cjava/gc.htm
+                                    // https://stackoverflow.com/questions/44369385/is-it-a-good-practice-to-use-runtime-getruntime-gc-method-in-ondestroy-of
 
     }
 
