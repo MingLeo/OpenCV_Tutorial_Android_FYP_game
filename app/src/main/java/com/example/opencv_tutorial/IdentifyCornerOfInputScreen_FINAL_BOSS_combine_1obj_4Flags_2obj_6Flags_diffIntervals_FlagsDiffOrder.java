@@ -118,7 +118,7 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
     //    long startTime4, timeInterval4;
 
     TextView LivesText;
-    int Lives = 4;  //initialize 3 Lives @ start of game
+    int Lives = 5;  //initialize 3 Lives @ start of game
     //maybe if want more complex, after each 4 rounds, if (Lives<3) {Lives+=1}
     TextView scoreText;
     int score=0;   //to display score in Alert Dialogue box for me to record.
@@ -1817,7 +1817,10 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
         Imgproc.cvtColor(InputFrame, InputFrame, Imgproc.COLOR_RGB2HSV);
 
 
-        Lower_Yellow = new Scalar(21, 150, 150);    //HSV color scale  H to adjust color, S to coontrol color variation, V is indicator of amt of light reque on object to be seen.
+//        Lower_Yellow = new Scalar(21, 100, 50);    //HSV color scale  H to adjust color, S to coontrol color variation, V is indicator of amt of light reque on object to be seen.
+//        Lower_Yellow = new Scalar(21, 100, 150);    //HSV color scale  H to adjust color, S to coontrol color variation, V is indicator of amt of light reque on object to be seen.
+        Lower_Yellow = new Scalar(21, 120, 75);    //Latest NEWEST Best condition.
+//        Lower_Yellow = new Scalar(21, 150, 150);    //ORIGINAL VALUE, NOT VRY GOOD IN LOW LIGHT Dark conditions though! -  HSV color scale  H to adjust color, S to coontrol color variation, V is indicator of amt of light reque on object to be seen.
         Upper_Yellow = new Scalar(31, 255, 360);    //HSV color scale
 
         Core.inRange(InputFrame, Lower_Yellow, Upper_Yellow, maskForYellow);
