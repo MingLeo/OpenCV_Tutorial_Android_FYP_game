@@ -182,7 +182,7 @@ public class hsv_colour extends AppCompatActivity implements CameraBridgeViewBas
 
 
         //https://docs.opencv.org/3.2.0/df/d9d/tutorial_py_colorspaces.html - outline the steps required to perform HSV Color space conversion
-        Imgproc.cvtColor(mat3,mat1,Imgproc.COLOR_RGB2HSV, 4);    //alrdy converted into HSV Color scale.    //H is the color space, S is the saturation/amt of gray, & V is the brightness value.
+// @##@        Imgproc.cvtColor(mat3,mat1,Imgproc.COLOR_RGB2HSV, 4);    //alrdy converted into HSV Color scale.    //H is the color space, S is the saturation/amt of gray, & V is the brightness value.
 //        scalarLow = new Scalar(45,20,10);    //Lowerbound HSV value
 //        scalarHigh = new Scalar(75,100,255);    //Upperbound HSV value
 
@@ -193,7 +193,8 @@ public class hsv_colour extends AppCompatActivity implements CameraBridgeViewBas
 //        Core.inRange(mat1,scalarLow,scalarHigh,mat2);     // Params: inRange(Mat src, Scalar lowerb, Scalar upperb, Mat dst).    So mat1 is the src input  mat2 is the dest output.    scalarLow as the lowerbound value   scalarHigh as the upperbound value    ,  dst(I)= [ lowerb(I)0 ≤src(I)0 ≤upperb(I)0 ]    So dst = src confined to within/clipped to its lower & upper bound limits.   https://docs.opencv.org/3.4/d2/de8/group__core__array.html#ga48af0ab51e36436c5d04340e036ce981
 //        Core.inRange(mat1,Low_Orange,High_Orange,mat2);     // Params: inRange(Mat src, Scalar lowerb, Scalar upperb, Mat dst).    So mat1 is the src input  mat2 is the dest output.    scalarLow as the lowerbound value   scalarHigh as the upperbound value    ,  dst(I)= [ lowerb(I)0 ≤src(I)0 ≤upperb(I)0 ]    So dst = src confined to within/clipped to its lower & upper bound limits.   https://docs.opencv.org/3.4/d2/de8/group__core__array.html#ga48af0ab51e36436c5d04340e036ce981
 //        Core.inRange(mat1,new Scalar(15,20,140),new Scalar(100,100,255),mat2);     // Params: inRange(Mat src, Scalar lowerb, Scalar upperb, Mat dst).    So mat1 is the src input  mat2 is the dest output.    scalarLow as the lowerbound value   scalarHigh as the upperbound value    ,  dst(I)= [ lowerb(I)0 ≤src(I)0 ≤upperb(I)0 ]    So dst = src confined to within/clipped to its lower & upper bound limits.   https://docs.opencv.org/3.4/d2/de8/group__core__array.html#ga48af0ab51e36436c5d04340e036ce981
-        Core.inRange(mat1,new Scalar(15,20,140),new Scalar(23,100,255),mat2);     // HSV Mask   https://stackoverflow.com/questions/48528754/what-are-recommended-color-spaces-for-detecting-orange-color-in-open-cv
+
+// @##@       Core.inRange(mat1,new Scalar(21,120,75),new Scalar(31,255,360),mat2);     // HSV Mask   https://stackoverflow.com/questions/48528754/what-are-recommended-color-spaces-for-detecting-orange-color-in-open-cv
         //at such a low Saturation level, even my hand which is only slightly orange will be detected!
         //Try this ORANGE BOUNDARY RANGE - https://stackoverflow.com/questions/10948589/choosing-the-correct-upper-and-lower-hsv-boundaries-for-color-detection-withcv
 
@@ -202,7 +203,7 @@ public class hsv_colour extends AppCompatActivity implements CameraBridgeViewBas
 //        Core.bitwise_not(mat2,mat2);   //opp of the mask, convert from from black scale image to white scale image.
    // Param: bitwise_and(Mat src1, Mat src2, Mat dst, Mat mask)
 //=======SOMETHING WRONG W THIS , Think is cos i did not clone for the mask! ===================
-        Core.bitwise_and(mat3, mat3, matFinal, mat2);    //returns the object in focus 'matFinal', which in this case will be the orange,  while the rest of the other region of the img
+//---CANCELED, NO ND BITWISE_AND!-----  Core.bitwise_and(mat3, mat3, matFinal, mat2);    //returns the object in focus 'matFinal', which in this case will be the orange,  while the rest of the other region of the img
 
 ////=============== NEW DIRECTION to take ==================
 //1. ok, can work, now to apply a simple blob detection algorithm, & retrieve/find the largest blob!
@@ -222,7 +223,8 @@ public class hsv_colour extends AppCompatActivity implements CameraBridgeViewBas
 //        return matFinal;
 
 
-        return matFinal;    //constantly returning alot of frames, frames do not auto clear out! - cause screen to become obscure over time..
+        return mat3;
+//        return matFinal;    //constantly returning alot of frames, frames do not auto clear out! - cause screen to become obscure over time..
 
                             //but why does my HSV image looks grayscale?  ApaRENTLY THE cORE.INrANGE part returns a Mask, so is BW, Nd to perform Bitwise operations to project post-compute masked objects
                          //                                             Soln: 1 ) https://stackoverflow.com/questions/48528754/what-are-recommended-color-spaces-for-detecting-orange-color-in-open-cv

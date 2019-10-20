@@ -192,7 +192,7 @@ public class hsv_color_3_yellow_sorted_clean_code extends AppCompatActivity impl
         Imgproc.cvtColor(InputFrame, InputFrame, Imgproc.COLOR_RGB2HSV);
 
 
-        Lower_Yellow = new Scalar(21, 150, 150);    //HSV color scale  H to adjust color, S to coontrol color variation, V is indicator of amt of light required to be shine on object to be seen.
+        Lower_Yellow = new Scalar(21, 120, 75);    //HSV color scale  H to adjust color, S to coontrol color variation, V is indicator of amt of light required to be shine on object to be seen.
 //        Lower_Yellow = new Scalar(21,150,100);    //HSV color scale  H to adjust color, S to coontrol color variation, V is indicator of amt of light required to be shine on object to be seen.
 //        Lower_Yellow = new Scalar(21,150,0);    //HSV color scale  H to adjust color, S to coontrol color variation, V is indicator of amt of light required to be shine on object to be seen.
         Upper_Yellow = new Scalar(31, 255, 360);    //HSV color scale
