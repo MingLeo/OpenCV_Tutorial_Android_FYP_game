@@ -117,6 +117,8 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
     //    long startTime3, timeInterval3;
     //    long startTime4, timeInterval4;
 
+    int rowWidth, colWidth;
+
     TextView LivesText;
     int Lives = 5;  //initialize 3 Lives @ start of game
     //maybe if want more complex, after each 4 rounds, if (Lives<3) {Lives+=1}
@@ -1809,8 +1811,8 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
         Imgproc.resize(mat1, mat2, InputFrame.size(), 0, 0, 0);    // params:(Mat src, Mat dst, Size dsize, fx, fy, interpolation)   Extract the dimensions en Orientation, obtain the new orientation's surface width & height.  Try to resize to fit to screen.
         Core.flip(mat2, InputFrame, -1);   // mat3 now get updated, no longer is the Origi inputFrame.rgba BUT RATHER the transposed, resized, flipped versie.rgba().
 
-        int rowWidth = InputFrame.rows();
-        int colWidth = InputFrame.cols();
+        rowWidth = InputFrame.rows();
+        colWidth = InputFrame.cols();
 
 
         Imgproc.cvtColor(InputFrame, InputFrame, Imgproc.COLOR_RGBA2RGB);
@@ -1970,9 +1972,9 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
 
 
         Rect r1 = new Rect(0,0,300,300);
-        Rect r2 = new Rect(772,0,300,300);
-        Rect r3 = new Rect(0,772,300,300);
-        Rect r4 = new Rect(772,772,300,300);
+        Rect r2 = new Rect(colWidth-300,0,300,300);
+        Rect r3 = new Rect(0,rowWidth-300,300,300);
+        Rect r4 = new Rect(colWidth-300,rowWidth-300,300,300);
 
 
         r1centroid.x =(r1.br().x +r1.tl().x) / 2;
@@ -1988,7 +1990,7 @@ public class IdentifyCornerOfInputScreen_FINAL_BOSS_combine_1obj_4Flags_2obj_6Fl
         r4centroid.y =(r4.br().y +r4.tl().y) / 2;
 
 
-        final Mat maskFloodFill = Mat.zeros(new Size(InputFrame.cols() + 2, InputFrame.rows() + 2), CvType.CV_8UC1);
+        final Mat maskFloodFill = Mat.zeros(new Size(colWidth + 2, rowWidth + 2), CvType.CV_8UC1);
 
 
         //YUPPA DEEDEE DOODLE FK EM THREADS!  IT WAS THE FKING THREADS THAT CAUSED THE iSSUE/PROB earlier!
