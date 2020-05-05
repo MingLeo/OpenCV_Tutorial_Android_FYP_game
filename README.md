@@ -1,5 +1,5 @@
 # FYP Interactive EXERGame w Yellow Object Detection using OpenCV
-
+<pre>
 *Introduction:
   * Musculoskeletal disorder is one of the leading causes of death and disability in Singapore. This is brought on by long duration of being in a sedentary position due to work or study that leads to bad posture. The goal of this project is to design a fun and interactive workout experience. By gamifying the workout experience, we hope to offer users a short 2-3 min workout to stretch their bodies in between breaks during work or study to relieve pressure on their body.
 
@@ -11,6 +11,7 @@
  * The objective of the game is for the users to match the position of their hands to the objects appearing on the screen, as they try to stay alive for as long as possible, and attain their best score.
  * Users may choose to play the game with weights to increase the intensity of the workout.
  * We hope that this game motivates the user to push beyond their limits, to surpass their previous high score, while at the same time encourage users to get up from their sit in between work or study breaks to offer a quick relieve on the pressure that iss affecting their posture.
+  
   
   
 Libraries used: OpenCv 3.4.6
@@ -92,3 +93,4 @@ Game development proceeded as follow:
   
 >
 '''
+</pre>
