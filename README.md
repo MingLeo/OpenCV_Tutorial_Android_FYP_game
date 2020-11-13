@@ -40,7 +40,9 @@
 
 <div style="text-align:center"><blockquote class="imgur-embed-pub" lang="en" data-id="a/I3Uatma"  ><a href="//imgur.com/a/I3Uatma">Mobile Exergaming</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
 
+[![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://youtu.be/vt5fpE0bzSY)
   <br />
+  
 ### Software & Libraries used:
  OpenCv 3.4.6, Gradle vers 3.5.0
   <br />
