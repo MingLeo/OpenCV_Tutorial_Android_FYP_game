@@ -40,13 +40,16 @@
   <br />
   <br />
   <br />
+  
 ### Software & Libraries used:
  OpenCv 3.4.6, Gradle vers 3.5.0
   <br />
   <br />
+  
 ### Game development:
 <br />
 <br />
+
 **1st Phase: Yellow Object Detection on each frame**
   * receive incoming frames from the camera
   * Perform Image processing on each individual frame.
