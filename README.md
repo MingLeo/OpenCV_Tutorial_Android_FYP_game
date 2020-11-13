@@ -39,6 +39,16 @@
   [![Watch Youtube Video](https://i.imgur.com/E67tILk.jpg)](https://youtu.be/HQym6psnFH4)/>
 </p>
 
+[![Watch Youtube Video](https://i.imgur.com/E67tILk.jpg)](https://youtu.be/HQym6psnFH4 "Watch Youtube Video")
+
+[![Watch Youtube Video](https://i.imgur.com/E67tILk.jpg)](https://youtu.be/HQym6psnFH4?style=centreme "Watch Youtube Video")
+
+[![Watch Youtube Video](https://i.imgur.com/E67tILk.jpg)](https://youtu.be/HQym6psnFH4)/>
+
+[![Watch Youtube Video](https://i.imgur.com/E67tILk.jpg)](https://youtu.be/HQym6psnFH4?style=centreme)/>
+
+<img align="..." src="..." alt="...">     ![A cute kitten](http://placekitten.com/200/300?style=centerme)
+
   <br />
   <br />
   <br />
