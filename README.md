@@ -1,15 +1,36 @@
 # FYP Interactive EXERGame w Yellow Object Detection using OpenCV
-**Introduction**:
+### Background
 
+**Introduction**:
   * Musculoskeletal disorder is one of the leading causes of death and disability in Singapore. This is brought on by long duration of being in a sedentary position due to work or study that leads to bad posture. The goal of this project is to design a fun and interactive workout experience. By gamifying the workout experience, we hope to offer users a short 2-3 min workout to stretch their bodies in between breaks during work or study to relieve pressure on their body.
-  * The use of OpenCv on Android for mobile is an acknowledgement to the fact that the mobile phones has played an increasingly significant role in our everday lives. We spend many hours of our waking time on the mobile phone, hence what better way to design an exercise app that is able to work solely with the built-in equipments that comes with our smartphone device & not require setup of specialized sensors/equipments.
-  * Mobile phones have become an intrinsic part of our life. We spend a lot of our waking time on our mobile phone. Hence an exergame developed for mobile phone will make workout convenient and more accessible for everyone. 
-  * In this project we decide to explore the usage of the mobile phone's built-in Camera, instead of special motion detection sensors such as LIDAR used in XBOX and KINECT, not the gyroscopes and accelerometers in our phone or fitness band which is only able to detect a specific type of motion.
+<br />
+
+**Problem Statement**:
+  * Research has shown that people are working long hours & not getting enough exercise. Unhealthy inactive lifestyle characterised by long hours of sitting in a sedentary position, that places alot of pressure on the musculoskeletal structure.
+<br />
+
+**Aim**:
+  * To design a cheap, fun, interactive, convenient workout experience that allow users to stretch and exercise their body during short breaks in between work or study.
+<br />
+
+**Solution**:
+  * Gamify the workout experience to offer users a short but interactive 2-3 min workout that can be performed at their own convenience via the mobile application anytime, anywhere.
+<br />
+
+**Why Mobile App**:
+  * Mobile phone has become an intrinsic part of our life, an extension and enabler towards achieving our daily goals through greater interconnectedness, enhancing productivity and efficiency. However higher connectiveness has also resulted in longer hours behind the desk. As such, a mobile application that can provide a quick workout at the convenience of the user would help alleviate musculoskeletal health issues. The app is offered at zero cost so that the game can be enjoyed by users regardless of age or income status.
+<br />
+
+**Concept/Design**:
+  * The app was developed using phone camera as the interfacing component between the app and the user, OpenCV (computer vision) Library to process frames and user’s motion. The use of OpenCV allows a greater range of motion detection instead of traditional sensors that restricts user to a specific type of motion in order for detection to work.
+  * In this project we decide to explore the usage of the mobile phone's built-in Camera, instead of special motion detection sensors such as LIDAR used in XBOX and KINECT, or the gyroscopes and accelerometers in our phone or fitness band which are only able to detect a specific type of motion.
   * By utilizing the mobile phone's built in camera, we do not require the user to carry or wear any motion tracking devices on their body while at the same time able to track the full range of the user's body & motion.
-  * With the mobile phone camera as the interfacing component to the user and OpenCV computer vision Library for tracing the user’s motion, this combination allows more freedom of movement as users are not restricted to any particular types of motion in order for the detection to work, thereby offering a more organic workout experience. Also, it removes the need to pair to motion sensor devices.
-  * The objective of the game is for the users to match the position of their hands to the objects appearing on the screen, as they try to stay alive for as long as possible, and attain their best score.
-  * Users may choose to play the game with weights to increase the intensity of the workout.
-  * We hope that this game motivates the user to push beyond their limits, to surpass their previous high score, while at the same time encourage users to get up from their sit in between work or study breaks to offer a quick relieve on the pressure that iss affecting their posture.
+<br />
+
+**Goal of the user**:
+  * To match the position of their hands to the position of the square boxes that appear on the screen. The number of boxes and frequency increases as the game progresses. The challenge is for the user to survive as long as possible, and to surpass their own personal highest score.
+  * Users can customize the intensity of the workout experience by choosing to carry weights according to their level of comfort.
+  * We hope that this game motivates the user to push beyond their limits, to surpass their previous high score, while at the same time encourage users to get up from their sit in between work or study breaks to offer a quick relieve on the pressure that is affecting their posture.
   <br />
   <br />
   
@@ -91,3 +112,7 @@ Game development proceeded as follow:
 <br />
 
 '''
+
+### User Feedback
+  * Users feedback that they find the game enjoyable and the pace comfortable and would recommend it to their friends and family.
+<br />
