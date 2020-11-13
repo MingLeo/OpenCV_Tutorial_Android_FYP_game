@@ -35,7 +35,7 @@
   <br />
   
 ### Youtube Video:
-[![Watch Youtube Video](https://i.imgur.com/E67tILk.jpg)](https://youtu.be/HQym6psnFH4)/>
+[![Watch Youtube Video](https://i.imgur.com/E67tILk.jpg)](https://youtu.be/HQym6psnFH4)
 
   <br />
   <br />
