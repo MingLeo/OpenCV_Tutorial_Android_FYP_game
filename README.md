@@ -35,19 +35,7 @@
   <br />
   
 ### Youtube Video:
-<p align="center">
-  [![Watch Youtube Video](https://i.imgur.com/E67tILk.jpg)](https://youtu.be/HQym6psnFH4)/>
-</p>
-
-<centre>[![Watch Youtube Video](https://i.imgur.com/E67tILk.jpg)](https://youtu.be/HQym6psnFH4 "Watch Youtube Video")<\centre>
-
-<centre>[![Watch Youtube Video](https://i.imgur.com/E67tILk.jpg)](https://youtu.be/HQym6psnFH4?style=centreme "Watch Youtube Video")<\centre>
-
 [![Watch Youtube Video](https://i.imgur.com/E67tILk.jpg)](https://youtu.be/HQym6psnFH4)/>
-
-[![Watch Youtube Video](https://i.imgur.com/E67tILk.jpg)](https://youtu.be/HQym6psnFH4?style=centreme)/>
-
-<img align="..." src="..." alt="...">     ![A cute kitten](http://placekitten.com/200/300?style=centerme)
 
   <br />
   <br />
