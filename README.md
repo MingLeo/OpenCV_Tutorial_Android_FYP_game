@@ -34,21 +34,19 @@
   <br />
   <br />
   
-<div style="text-align:center"> ### Youtube Video:
-
-<div style="text-align:center">[![Watch Youtube Video](https://i.imgur.com/E67tILk.jpg)](https://youtu.be/HQym6psnFH4)
-
 ### Youtube Video:
+<p align="center">
+  [![Watch Youtube Video](https://i.imgur.com/E67tILk.jpg)](https://youtu.be/HQym6psnFH4)/>
+</p>
 
-[![Watch Youtube Video](https://i.imgur.com/E67tILk.jpg)](https://youtu.be/HQym6psnFH4)
   <br />
-
+  <br />
+  <br />
 ### Software & Libraries used:
  OpenCv 3.4.6, Gradle vers 3.5.0
   <br />
+  <br />
 ### Game development:
-
-'''
 <br />
 <br />
 **1st Phase: Yellow Object Detection on each frame**
@@ -119,8 +117,7 @@
   * We hope that people can use the game as a motivating factor for exercising.
   * We hope to show that exercise can be performed in a fun and relax manner and not necessarily boring, uninspiring repetitive motions.
 <br />
-
-'''
+<br />
 
 ### User Feedback
   * Users feedback that they find the game enjoyable and the pace comfortable and would recommend it to their friends and family.
