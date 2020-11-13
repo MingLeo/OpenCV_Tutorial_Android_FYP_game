@@ -48,7 +48,6 @@
   
 ### Game development:
 <br />
-<br />
 
 **1st Phase: Yellow Object Detection on each frame**
   * receive incoming frames from the camera
