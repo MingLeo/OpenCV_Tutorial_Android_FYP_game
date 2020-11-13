@@ -39,9 +39,9 @@
   [![Watch Youtube Video](https://i.imgur.com/E67tILk.jpg)](https://youtu.be/HQym6psnFH4)/>
 </p>
 
-[![Watch Youtube Video](https://i.imgur.com/E67tILk.jpg)](https://youtu.be/HQym6psnFH4 "Watch Youtube Video")
+<centre>[![Watch Youtube Video](https://i.imgur.com/E67tILk.jpg)](https://youtu.be/HQym6psnFH4 "Watch Youtube Video")<\centre>
 
-[![Watch Youtube Video](https://i.imgur.com/E67tILk.jpg)](https://youtu.be/HQym6psnFH4?style=centreme "Watch Youtube Video")
+<centre>[![Watch Youtube Video](https://i.imgur.com/E67tILk.jpg)](https://youtu.be/HQym6psnFH4?style=centreme "Watch Youtube Video")<\centre>
 
 [![Watch Youtube Video](https://i.imgur.com/E67tILk.jpg)](https://youtu.be/HQym6psnFH4)/>
 
