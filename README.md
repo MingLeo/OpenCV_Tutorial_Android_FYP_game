@@ -34,10 +34,17 @@
   <br />
   <br />
   
-Libraries used: OpenCv 3.4.6
-Gradle vers 3.5.0
+###Watch Youtube Video:
 
-Game development proceeded as follow:
+<div style="text-align:center">[![Watch Youtube Video](https://imgur.com/E67tILk)](https://youtu.be/HQym6psnFH4)
+
+<div style="text-align:center"><blockquote class="imgur-embed-pub" lang="en" data-id="a/I3Uatma"  ><a href="//imgur.com/a/I3Uatma">Mobile Exergaming</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+
+  <br />
+### Software & Libraries used:
+ OpenCv 3.4.6, Gradle vers 3.5.0
+  <br />
+### Game development:
 
 '''
 <br />
